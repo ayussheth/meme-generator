@@ -1,4 +1,6 @@
 'use strict'
+
+
 function init() { 
     initCanvas();
     renderGallery();
@@ -27,6 +29,7 @@ function renderEditor(id) {
     elGalleryContainer.classList.add('shrunken')
     clearCanvas()
     initCanvas()
+    
 }
 
 function onCloseEditor() { 
