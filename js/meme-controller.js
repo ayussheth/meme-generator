@@ -36,7 +36,7 @@ renderCanvas()
 function onSwitchLines() {
     ++gMeme.selectedLineIdx
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
-    let elNewLine = document.querySelector('.second-line-input')
+    let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.select();

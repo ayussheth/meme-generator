@@ -1,28 +1,81 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    background: linear-gradient(rgba(225, 223, 182, 1) 0%, rgb(242, 248, 228) 14%, rgb(245, 246, 241) 64%, rgb(255, 255, 255) 100%);
+    background-repeat: no-repeat;
+    background-size: auto;
+    margin: 0;
+
+}
+
+/* color palette:
+#c5ee7d
+ #8cb04e
+ #5c452d
+ #e1dfb6
+ #7a9244*/
+@font-face {
+    font-family: "Shrek";
+    src: url("fonts/Shrek.ttf") format("truetype");
+}
+
+header {
+    overflow: hidden;
+
+}
+
+.header {
+    height: 90px;
+    background-color: #e1dfb6;
+    width: 100vw;
+}
+
+.header h1 {
+    font-family: 'Shrek';
+    float: left;
+    color: #7a9244;
+    padding-left: 2%;
+    color: #7a9244;
+    text-shadow: 0px 0px 0 rgb(192, 233, 120),
+        1px 1px 0 rgb(187, 228, 115),
+        2px 2px 0 rgb(182, 223, 110),
+        3px 3px 0 rgb(177, 218, 105),
+        4px 4px 0 rgb(172, 213, 100),
+        5px 5px 0 rgb(167, 208, 95),
+        6px 6px 0 rgb(162, 203, 90),
+        7px 7px 0 rgb(157, 198, 85),
+        8px 8px 0 rgb(152, 193, 80),
+        9px 9px 0 rgb(147, 188, 75),
+        10px 10px 0 rgb(142, 183, 70),
+        11px 11px 10px rgba(0, 0, 0, 0.6),
+        11px 11px 1px rgba(0, 0, 0, 0.5),
+        0px 0px 10px rgba(0, 0, 0, .2);
+}
+
 /* MAIN PAGE GRID */
-.main-container { 
-    margin: 0 auto;
+.main-container {
+    margin: 50px auto;
     display: grid;
     grid-template-columns: 1fr;
     position: relative;
     overflow: hidden;
+
 }
 
-.main-container.editor-shown { 
+.main-container.editor-shown {
     grid-template-columns: 1fr 1fr;
 }
+
 .gallery-container {
     width: 75%;
     margin: 0 auto;
 
 }
+
 .gallery-grid {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-
-
-
