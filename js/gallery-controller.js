@@ -1,8 +1,6 @@
 
 
 function onImgPick(id) { 
-    console.log(`the selected picture: ${id}`);
-    console.log(gImgs[id]);
     gMeme.selectedImgId = id
     renderEditor(id)
 }

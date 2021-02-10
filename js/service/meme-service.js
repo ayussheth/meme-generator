@@ -75,7 +75,8 @@ var gMeme = {
         size: 40,
         align: 'left',
         color: 'red',
-        strokeColor: 'black'
+        strokeColor: 'black',
+        width: 312
     }, {
         txt: 'This is my Second line',
         pos: {
@@ -85,7 +86,8 @@ var gMeme = {
         size: 40,
         align: 'left',
         color: 'red',
-        strokeColor: 'black'
+        strokeColor: 'black',
+        width: 362
     }]
 }
 
@@ -103,6 +105,8 @@ function renderCanvas() {
         gMeme.lines.forEach((line, idx) => {
             drawText(idx)
         });
+        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x-(gMeme.lines[gMeme.selectedLineIdx].width /2 ), gMeme.lines[gMeme.selectedLineIdx].pos.y-(gMeme.lines[gMeme.selectedLineIdx].size/2),gMeme.lines[gMeme.selectedLineIdx].width,gMeme.lines[gMeme.selectedLineIdx].size)
+
     }
 }
 
@@ -117,17 +121,19 @@ function drawImg() {
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    gMeme.lines.splice(2,gMeme.lines.length)
+    gMeme.lines.splice(2, gMeme.lines.length)
     gMeme.lines[0].txt = 'This is my First line'
     gMeme.lines[1].txt = 'This is my Second line'
 
 }
+
 function clearMeme() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gMeme.lines.forEach((line) => {
-        line.txt=``
+        line.txt = ``
     });
 }
+
 function drawText(id) {
     let currLine = getCurrLine(id)
     gCtx.globalCompositeOperation = 'source-over';
@@ -142,12 +148,12 @@ function drawText(id) {
 
 }
 
-function drawRect(x, y) {
+function drawRect(x, y,width,height) {
     gCtx.beginPath()
-    gCtx.rect(x, y, 450, 50)
+    gCtx.rect(x, y, width, height)
     gCtx.fillStyle = 'transparent'
     // gCtx.fill()
-    gCtx.fillRect(x, y, 450, 50)
+    gCtx.fillRect(x, y, width, height)
     gCtx.strokeStyle = 'white'
     gCtx.stroke()
 }
@@ -166,13 +172,30 @@ function newMemeLine() {
         size: 40,
         align: 'left',
         color: 'white',
-        strokeColor: 'black'
+        strokeColor: 'black',
+        width:  parseInt(gCtx.measureText('This is my new line').width)
     })
     if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
     else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 450
 
 }
 
-function     removeSelectedLine() { 
-    gMeme.lines.splice(gMeme.selectedLineIdx,1)
+function removeSelectedLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+}
+
+function addMouseListeners() {
+    // gElCanvas.addEventListener('mousemove', onMove)
+
+    gElCanvas.addEventListener('mousedown', onDown)
+
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+
+    gElCanvas.addEventListener('touchstart', onDown)
+
+    gElCanvas.addEventListener('touchend', onUp)
 }

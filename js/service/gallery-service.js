@@ -4,6 +4,8 @@
 function init() { 
     initCanvas();
     renderGallery();
+    addMouseListeners();
+addTouchListeners();
 }
 function renderGallery() { 
 let elGallery = document.querySelector('.gallery-grid')
