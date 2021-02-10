@@ -21,8 +21,13 @@ function onImgPick(id) {
 function renderEditor(id) { 
     let elMainContainer = document.querySelector('.main-container');
     let elEditorContainer = document.querySelector('.editor-container')
-    elMainContainer.classList.add('editor-shown')
-    elEditorContainer.classList.add('shown')
+    let elGalleryContainer = document.querySelector('.gallery-grid')
+
+    elMainContainer.classList.toggle('editor-shown')
+    elEditorContainer.classList.toggle('shown')
+    elGalleryContainer.classList.toggle('shrunken')
+
     clearCanvas()
     initCanvas()
 }
+

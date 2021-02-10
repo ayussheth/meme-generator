@@ -1,6 +1,6 @@
 .editor-container { 
 position: absolute;
-right: -500px;
+right: -1000px;
 display: grid;
 background-color: beige;
 grid-template-columns: 1fr 1fr;
@@ -11,4 +11,17 @@ transition: all .3s ;
 .editor-container.shown { 
 position: relative;
 right: 0;
+}
+
+
+.card img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+
+}
+
+.card {
+    text-align: center;
+    height: 200px;
 }

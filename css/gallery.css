@@ -1,21 +1,22 @@
 * {
     box-sizing: border-box;
 }
-
-/* MAIN LAYOUT */
+/* MAIN PAGE GRID */
 .main-container { 
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
     position: relative;
-
     overflow: hidden;
 }
+
 .main-container.editor-shown { 
     grid-template-columns: 1fr 1fr;
 }
 .gallery-container {
     width: 75%;
     margin: 0 auto;
+
 }
 .gallery-grid {
     display: grid;
@@ -23,15 +24,5 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.card img {
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
 
-}
 
-.card {
-    text-align: center;
-    height: 200px;
-
-}

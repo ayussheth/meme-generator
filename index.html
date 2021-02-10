@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/media-queries.css">
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/contact.css">
@@ -13,18 +14,20 @@
 </head>
 
 <body onload="init()">
-    <div class="main-container editor-shown">
+    <div class="main-container main-layout">
     <div class="gallery-container">
         <div class="gallery-grid">
         </div>
     </div>
-    <div class="editor-container shown" >
+    <div class="editor-container " >
         <div class="canvas-container ">
             <canvas id="img-canvas" height="500" width="500" onclick=""></canvas>
         </div>
         <div class="meme-editor">
             <input type="text" placeholder="Your second line here" class="second-line-input">
             <button onclick="onAddLine()">Submit Line</button>
+            <button onclick="renderEditor(0)">CLOSE EDITOR</button>
+            <div class="buttons-container"><button></button><button></button><button></button><button></button><button></button><button></button></div>
         </div>
     </div>
 </div>
