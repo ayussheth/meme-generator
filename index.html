@@ -10,8 +10,18 @@
     <link rel="stylesheet" href="css/contact.css">
     <title>Meme Generator</title>
 </head>
-<body>
-    
+<body onload="init()">
+    <div class="canvas-container">
+        <canvas id="img-canvas" height="500" width="500" onclick="" ></canvas>
+    </div>    
+    <div class="meme-editor">
+        <input type="text" placeholder="Your second line here" class="second-line-input">
+        <button onclick="onAddLine()">Submit Line</button>
+    </div>
+
+    <script src="js/service/storage-service.js"></script>
     <script src="js/service/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+
 </body>
 </html>
