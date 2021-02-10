@@ -1,0 +1,14 @@
+.editor-container { 
+position: absolute;
+right: -500px;
+display: grid;
+background-color: beige;
+grid-template-columns: 1fr 1fr;
+grid-gap: 5%;
+transition: all .3s ;
+}
+
+.editor-container.shown { 
+position: relative;
+right: 0;
+}
