@@ -117,8 +117,17 @@ function drawImg() {
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-}
+    gMeme.lines.splice(2,gMeme.lines.length)
+    gMeme.lines[0].txt = 'This is my First line'
+    gMeme.lines[1].txt = 'This is my Second line'
 
+}
+function clearMeme() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+    gMeme.lines.forEach((line, idx) => {
+        line.txt=``
+    });
+}
 function drawText(id) {
     let currLine = getCurrLine(id)
     gCtx.globalCompositeOperation = 'source-over';

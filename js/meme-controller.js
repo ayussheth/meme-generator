@@ -47,3 +47,8 @@ function onNewLine() {
     newMemeLine()
     renderCanvas()
 }
+
+function onClearCanvas() { 
+    clearMeme()
+    renderCanvas()
+}
