@@ -25,17 +25,17 @@
         </div>
         <div class="meme-editor">
             <input type="text" placeholder="Your second line here" class="second-line-input">
-            <button onclick="onAddLine()">Submit Line</button>
+            <button onclick="onEditLine()">Submit Line</button>
             <button onclick="onCloseEditor()">CLOSE EDITOR</button>
             <div class="buttons-container">
                 <input type="color" onchange="onChangeColor()" id="user-color-picker">
                 <input type="color" onchange="onChangeStrokeColor()" id="user-stroke-color-picker">
-
-                <button>+</button>
-                <button>-</button>
+                <button onclick="onChangeSize('plus')">+</button>
+                <button onclick="onChangeSize('minus')">-</button>
                 <button onclick="onSwitchLines()">SWITCH</button>
-                <button></button>
-                <button></button>
+                <button onclick="onMoveLine('up')">UP</button>
+                <button onclick="onMoveLine('down')">DOWN</button>
+                <button onclick="onNewLine()">ADD LINE</button>
                 <button></button>
             </div>
         </div>

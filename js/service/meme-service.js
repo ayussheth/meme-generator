@@ -68,13 +68,21 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [{
         txt: 'This is my First line',
-        size: 20,
+        pos: {
+            x: 250,
+            y: 50
+        },
+        size: 40,
         align: 'left',
         color: 'red',
         strokeColor: 'black'
     }, {
         txt: 'This is my Second line',
-        size: 20,
+        pos: {
+            x: 250,
+            y: 450
+        },
+        size: 40,
         align: 'left',
         color: 'red',
         strokeColor: 'black'
@@ -92,9 +100,9 @@ function renderCanvas() {
     img.src = `./img/${gMeme.selectedImgId}.jpg`;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        //FIXME:add a for each loop on gMeme.lines to support more line rendering
-        drawText(gMeme.lines[0].txt, 250, 50, gMeme.lines[0].color, gMeme.lines[0].strokeColor)
-        drawText(gMeme.lines[1].txt, 250, 450, gMeme.lines[1].color, gMeme.lines[1].strokeColor)
+        gMeme.lines.forEach((line, idx) => {
+            drawText(idx)
+        });
     }
 }
 
@@ -111,16 +119,17 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function drawText(txt, x, y, fillColor, strokeColor) {
+function drawText(id) {
+    let currLine = getCurrLine(id)
     gCtx.globalCompositeOperation = 'source-over';
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = strokeColor
-    gCtx.fillStyle = fillColor
-    gCtx.font = '40px Impact'
+    gCtx.strokeStyle = currLine.strokeColor
+    gCtx.fillStyle = currLine.color
+    gCtx.font = `${currLine.size}px Impact`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle';
-    gCtx.fillText(txt, x, y)
-    gCtx.strokeText(txt, x, y)
+    gCtx.fillText(currLine.txt, currLine.pos.x, currLine.pos.y)
+    gCtx.strokeText(currLine.txt, currLine.pos.x, currLine.pos.y)
 
 }
 
@@ -134,6 +143,20 @@ function drawRect(x, y) {
     gCtx.stroke()
 }
 
-function getCurrMeme() {
-    return gMeme.lines[gMeme.selectedLineIdx]
+function getCurrLine(id) {
+    return gMeme.lines[id]
+}
+
+function newMemeLine() {
+    gMeme.lines.push({
+        txt: 'This is my new line',
+        pos: {
+            x: 250,
+            y: 250
+        },
+        size: 40,
+        align: 'left',
+        color: 'white',
+        strokeColor: 'black'
+    })
 }
