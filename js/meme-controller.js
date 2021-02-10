@@ -28,7 +28,7 @@ function onMoveLine(val) {
 
 }
 function onEditLine() {
-    let newLineInput = document.querySelector('.second-line-input').value
+    let newLineInput = document.querySelector('.line-input').value
     gMeme.lines[gMeme.selectedLineIdx].txt = newLineInput
 renderCanvas()
 }
