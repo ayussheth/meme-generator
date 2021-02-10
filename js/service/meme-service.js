@@ -22,12 +22,14 @@ var gMeme = {
         txt: 'This is my First line',
         size: 20,
         align: 'left',
-        color: 'red'
+        color: 'red',
+        strokeColor: 'black'
     },{
         txt: 'This is my Second line',
         size: 20,
         align: 'left',
-        color: 'red'
+        color: 'red',
+        strokeColor: 'black'
     }]
 }
 
@@ -54,17 +56,12 @@ function clearCanvas() {
 function drawText(text, x, y) {
     gCtx.globalCompositeOperation='source-over';
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = 'white'
+    gCtx.strokeStyle = gMeme.lines[0].strokeColor
+    gCtx.fillStyle = gMeme.lines[0].color
     gCtx.font = '40px Impact'
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle';
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
 
-}
-function onAddLine() { 
-    let newLineInput = document.querySelector('.second-line-input').value
-    drawText(newLineInput, 250, 450)
-    
 }

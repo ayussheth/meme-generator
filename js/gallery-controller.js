@@ -22,12 +22,19 @@ function renderEditor(id) {
     let elMainContainer = document.querySelector('.main-container');
     let elEditorContainer = document.querySelector('.editor-container')
     let elGalleryContainer = document.querySelector('.gallery-grid')
-
-    elMainContainer.classList.toggle('editor-shown')
-    elEditorContainer.classList.toggle('shown')
-    elGalleryContainer.classList.toggle('shrunken')
-
+    elMainContainer.classList.add('editor-shown')
+    elEditorContainer.classList.add('shown')
+    elGalleryContainer.classList.add('shrunken')
     clearCanvas()
     initCanvas()
+}
+
+function onCloseEditor() { 
+    let elMainContainer = document.querySelector('.main-container');
+    let elEditorContainer = document.querySelector('.editor-container')
+    let elGalleryContainer = document.querySelector('.gallery-grid')
+    elMainContainer.classList.remove('editor-shown')
+    elEditorContainer.classList.remove('shown')
+    elGalleryContainer.classList.remove('shrunken')
 }
 

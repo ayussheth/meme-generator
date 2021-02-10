@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/gallery.css">
-    <link rel="stylesheet" href="css/media-queries.css">
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/media-queries.css">
     <title>Meme Generator</title>
 </head>
 
@@ -26,8 +26,18 @@
         <div class="meme-editor">
             <input type="text" placeholder="Your second line here" class="second-line-input">
             <button onclick="onAddLine()">Submit Line</button>
-            <button onclick="renderEditor(0)">CLOSE EDITOR</button>
-            <div class="buttons-container"><button></button><button></button><button></button><button></button><button></button><button></button></div>
+            <button onclick="onCloseEditor()">CLOSE EDITOR</button>
+            <div class="buttons-container">
+                <input type="color" onchange="onChangeColor()" id="user-color-picker">
+                <input type="color" onchange="onChangeStrokeColor()" id="user-stroke-color-picker">
+
+                <button>+</button>
+                <button>-</button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+            </div>
         </div>
     </div>
 </div>
