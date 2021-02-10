@@ -2,22 +2,22 @@
 
 function onChangeColor() {
     let pickedColor = document.querySelector('#user-color-picker').value
+    
     gMeme.lines[gMeme.selectedLineIdx].color = pickedColor
-    initCanvas()
+    renderCanvas()
 }
 
 function onChangeStrokeColor() {
     let pickedColor = document.querySelector('#user-stroke-color-picker').value
+    
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = pickedColor
-    initCanvas()
+    renderCanvas()
 }
 
 function onAddLine() {
     let newLineInput = document.querySelector('.second-line-input').value
     gMeme.lines[gMeme.selectedLineIdx].txt = newLineInput
-    console.log(gMeme.lines[gMeme.selectedLineIdx]);
-    clearCanvas()
-    initCanvas()
+renderCanvas()
 }
 
 function onSwitchLines() {
@@ -27,5 +27,5 @@ function onSwitchLines() {
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.select();
-    initCanvas()
+    
 }

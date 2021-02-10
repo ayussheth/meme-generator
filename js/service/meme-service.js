@@ -81,14 +81,21 @@ var gMeme = {
     }]
 }
 
-
 function initCanvas() {
     gElCanvas = document.getElementById('img-canvas')
     gCtx = gElCanvas.getContext('2d')
-    drawText(gMeme.lines[0].txt, 250, 50, gMeme.lines[0].color, gMeme.lines[0].strokeColor)
-    drawText(gMeme.lines[1].txt, 250, 450, gMeme.lines[1].color, gMeme.lines[1].strokeColor)
-    drawImg(gMeme.selectedImgId)
+    renderCanvas()
+}
 
+function renderCanvas() {
+    const img = new Image()
+    img.src = `./img/${gMeme.selectedImgId}.jpg`;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        //FIXME:add a for each loop on gMeme.lines to support more line rendering
+        drawText(gMeme.lines[0].txt, 250, 50, gMeme.lines[0].color, gMeme.lines[0].strokeColor)
+        drawText(gMeme.lines[1].txt, 250, 450, gMeme.lines[1].color, gMeme.lines[1].strokeColor)
+    }
 }
 
 function drawImg() {
@@ -104,7 +111,7 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function drawText(text, x, y, fillColor, strokeColor) {
+function drawText(txt, x, y, fillColor, strokeColor) {
     gCtx.globalCompositeOperation = 'source-over';
     gCtx.lineWidth = 2
     gCtx.strokeStyle = strokeColor
@@ -112,8 +119,8 @@ function drawText(text, x, y, fillColor, strokeColor) {
     gCtx.font = '40px Impact'
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle';
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
 
 }
 
@@ -125,4 +132,8 @@ function drawRect(x, y) {
     gCtx.fillRect(x, y, 450, 50)
     gCtx.strokeStyle = 'white'
     gCtx.stroke()
+}
+
+function getCurrMeme() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
