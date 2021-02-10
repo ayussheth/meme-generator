@@ -52,3 +52,8 @@ function onClearCanvas() {
     clearMeme()
     renderCanvas()
 }
+
+function onDeleteLine() { 
+    removeSelectedLine()
+    renderCanvas()
+}

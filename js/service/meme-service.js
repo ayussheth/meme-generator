@@ -124,7 +124,7 @@ function clearCanvas() {
 }
 function clearMeme() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    gMeme.lines.forEach((line, idx) => {
+    gMeme.lines.forEach((line) => {
         line.txt=``
     });
 }
@@ -168,4 +168,11 @@ function newMemeLine() {
         color: 'white',
         strokeColor: 'black'
     })
+    if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
+    else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 450
+
+}
+
+function     removeSelectedLine() { 
+    gMeme.lines.splice(gMeme.selectedLineIdx,1)
 }
