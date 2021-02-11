@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/media-queries.css">
     <link rel="shortcut icon" type="image/jpg" href="css/favicon.jpg"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Meme Generator</title>
 </head>
 
@@ -49,7 +50,7 @@
                 <button onclick="onMoveLine('down')">DOWN</button>
                 <button onclick="onNewLine()">ADD LINE</button>
                 <button onclick="onClearCanvas()">CLEAR</button>
-                <button onclick="onDeleteLine()">DELETE LINE</button>
+                <button onclick="onDeleteLine()"><i class="far fa-trash-alt"></i></button>
                 <button onclick="onClearLines()">GUIDELINES ON/OFF</button>
 
                 <a href="#" onclick="onDownloadMeme(this)">Download</a>
@@ -58,7 +59,11 @@
         </div>
     </div>
 </div>
-
+<div class="footer">
+<footer>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia praesentium animi dolorum possimus nulla est!
+</footer>
+</div>
     <script src="js/service/storage-service.js"></script>
     <script src="js/service/meme-service.js"></script>
     <script src="js/service/gallery-service.js"></script>

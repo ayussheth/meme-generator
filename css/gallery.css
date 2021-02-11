@@ -83,3 +83,13 @@ header {
 #img-canvas{
     border-radius: 10px;
 }
+
+.footer { 
+    overflow:hidden;
+
+}
+footer { 
+    height: 90px;
+    background-color: #e1dfb6;
+    width: 100vw;
+}
