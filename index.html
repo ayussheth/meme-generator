@@ -32,15 +32,15 @@
         </div>
         <div class="meme-editor">
             <input type="text" placeholder="Now editing top text" class="line-input">
-            <button onclick="onEditLine()">Submit Line</button>
+            <!-- <button onclick="onEditLine()">Submit Line</button> -->
             <button onclick="onCloseEditor()">CLOSE EDITOR</button>
             <div class="buttons-container">
                 <div class="color-changer">
                     <div class="change change-fill">
-                        <h5> Fill:</h5><input type="color" onchange="onChangeColor()" id="user-color-picker">
+                        <h5> Fill:</h5><input type="color"  id="user-color-picker">
                     </div>
                     <div class="change change-stroke">
-                        <h5> Stroke:</h5><input type="color" onchange="onChangeStrokeColor()" id="user-stroke-color-picker">
+                        <h5> Stroke:</h5><input type="color"  id="user-stroke-color-picker">
                     </div>
                 </div>
                 <button onclick="onChangeSize('plus')">+</button>

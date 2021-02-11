@@ -22,6 +22,11 @@ function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mouseup', onUp)
+    document.getElementById("user-color-picker").addEventListener("input", onChangeColor);
+    document.getElementById("user-stroke-color-picker").addEventListener("input", onChangeStrokeColor);
+    document.querySelector(".line-input").addEventListener("input",  onEditLine);
+
+
 }
 
 function addTouchListeners() {

@@ -13,11 +13,11 @@ position: relative;
 right: 0;
 display: grid;
 padding: 5%;
-grid-template-columns: 2fr 1fr;
+grid-template-columns: 3fr 1fr;
 }
 
 .meme-editor{
-    padding: 5%;
+    width: 100%;
 }
 .meme-editor input{ 
     width: 100%;
@@ -26,7 +26,6 @@ grid-template-columns: 2fr 1fr;
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
-
 }
 
 .card {
