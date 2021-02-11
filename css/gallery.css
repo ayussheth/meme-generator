@@ -51,7 +51,7 @@ header {
         10px 10px 0 rgb(142, 183, 70),
         11px 11px 10px rgba(0, 0, 0, 0.6),
         11px 11px 1px rgba(0, 0, 0, 0.5),
-        0px 0px 10px rgba(0, 0, 0, .2);
+        0px 0px 10px #00000033;
 }
 
 /* MAIN PAGE GRID */

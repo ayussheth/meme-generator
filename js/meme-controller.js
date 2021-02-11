@@ -63,21 +63,23 @@ function onDeleteLine() {
 
 function onDown(e) {
     e.preventDefault();
-    const rect = gElCanvas.getBoundingClientRect()
-    const startX = e.clientX - rect.left
-    const startY = e.clientY - rect.top
+    const startX = e.offsetX
+    const startY = e.offsetY
     for (var i = 0; i < gMeme.lines.length; i++) {
         if (textHittest(startX, startY, i)) {
-            console.log('hit the text');
+            gMeme.selectedLineIdx = i;
         }
     }
+    let elNewLine = document.querySelector('.line-input')
+    elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
+    elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
+    elNewLine.select();
+    renderCanvas()
 }
-
-function textHittest(x, y, textIndex) {
-    console.log(`click x:`,x,'click y:',y);
-    var text = gMeme.lines[textIndex];
-    return (x >= text.pos.x  &&
-        x <= text.pos.x + text.width +100  &&
-        y >= text.pos.y - text.size  &&
-        y <= text.pos.y );
+function textHittest(x,y,textIndex){
+    let rect=gMeme.lines[textIndex].rect;
+    return(x>=rect.xStart && 
+        x<=rect.xStart+rect.xEnd &&
+        y>=rect.yStart && 
+        y<=rect.yEnd);
 }

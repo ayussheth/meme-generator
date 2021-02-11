@@ -66,6 +66,7 @@ var gCtx;
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
+    // selectedRect: {},
     lines: [{
         txt: 'This is my First line',
         pos: {
@@ -104,9 +105,9 @@ function renderCanvas() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
             drawText(idx)
+            saveRectToLine(line)
+            if (gMeme.lines.length) drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2), gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2), gMeme.lines[gMeme.selectedLineIdx].width, gMeme.lines[gMeme.selectedLineIdx].size)
         });
-        drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x-(gMeme.lines[gMeme.selectedLineIdx].width /2 ), gMeme.lines[gMeme.selectedLineIdx].pos.y-(gMeme.lines[gMeme.selectedLineIdx].size/2),gMeme.lines[gMeme.selectedLineIdx].width,gMeme.lines[gMeme.selectedLineIdx].size)
-
     }
 }
 
@@ -148,14 +149,27 @@ function drawText(id) {
 
 }
 
-function drawRect(x, y,width,height) {
+function drawRect(x, y, width, height) {
     gCtx.beginPath()
     gCtx.rect(x, y, width, height)
     gCtx.fillStyle = 'transparent'
-    // gCtx.fill()
-    gCtx.fillRect(x, y, width, height)
     gCtx.strokeStyle = 'white'
-    gCtx.stroke()
+    if (x === gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2) && y === gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2)) {
+        gCtx.fillRect(x, y, width, height)
+        gCtx.stroke()
+    }
+}
+
+function saveRectToLine(line) {
+    gCtx.beginPath()
+    gCtx.rect(line.pos.x-(line.width/2), line.pos.y-(line.size/2), line.width, line.size)
+    line.rect = {
+        xStart: line.pos.x-(line.width/2),
+        yStart: line.pos.y-(line.size/2),
+        xEnd: line.width,
+        yEnd: line.pos.y-(line.size/2)+line.size
+    }
+
 }
 
 function getCurrLine(id) {
@@ -173,7 +187,7 @@ function newMemeLine() {
         align: 'left',
         color: 'white',
         strokeColor: 'black',
-        width:  parseInt(gCtx.measureText('This is my new line').width)
+        width: parseInt(gCtx.measureText('This is my new line').width)
     })
     if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
     else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 450
