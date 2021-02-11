@@ -2,62 +2,92 @@
 var gImgs = [{
         id: 0,
         url: 'img/0.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'confused', 'sarcastic']
     },
     {
         id: 1,
         url: 'img/1.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'sarcastic']
     },
     {
         id: 2,
         url: 'img/2.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'monsters inc', 'awkward']
     },
     {
         id: 3,
         url: 'img/3.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'trump', 'angry', 'funny']
     },
     {
         id: 4,
         url: 'img/4.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'sarcastic']
     },
     {
         id: 5,
         url: 'img/5.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'jacuzzi', 'funny']
     },
     {
         id: 6,
         url: 'img/6.jpg',
-        keywords: ['happy']
+        keywords: ['shrek']
     },
     {
         id: 7,
         url: 'img/7.jpg',
-        keywords: ['happy']
+        keywords: ['shrek', 'funny','awkward']
     },
     {
         id: 8,
         url: 'img/8.jpg',
-        keywords: ['happy']
+        keywords: ['shrek','angry']
     },
     {
         id: 9,
         url: 'img/9.jpg',
-        keywords: ['happy']
+        keywords: ['shrek','real-life','funny','awkward']
     },
     {
         id: 10,
         url: 'img/10.jpg',
-        keywords: ['happy']
+        keywords: ['shrek','donkey','awkward']
     },
     {
         id: 11,
         url: 'img/11.jpg',
-        keywords: ['happy']
+        keywords: ['shrek','shrexy','smile','awkward']
+    },
+    {
+        id: 12,
+        url: 'img/12.jpg',
+        keywords: ['shrek','donkey','awkward','smile']
+    },
+    {
+        id: 13,
+        url: 'img/13.jpg',
+        keywords: ['shrek']
+    },
+    {
+        id: 14,
+        url: 'img/14.jpg',
+        keywords: ['shrek']
+    },
+    {
+        id: 15,
+        url: 'img/15.jpg',
+        keywords: ['shrek']
+    },
+    {
+        id: 16,
+        url: 'img/16.jpg',
+        keywords: ['shrek']
+    },
+    {
+        id: 17,
+        url: 'img/17.jpg',
+        keywords: ['shrek']
     },
 ];
 var gSavedMemes;
@@ -74,11 +104,12 @@ var gMeme = {
             y: 50
         },
         size: 40,
-        align: 'left',
+        align: 'center',
         color: 'red',
         strokeColor: 'black',
         width: 312,
-        isDragging:false
+        isDragging:false,
+        font:'Impact'
     }, {
         txt: 'This is my Second line',
         pos: {
@@ -86,11 +117,12 @@ var gMeme = {
             y: 450
         },
         size: 40,
-        align: 'left',
+        align: 'center',
         color: 'red',
         strokeColor: 'black',
         width: 362,
-        isDragging:false
+        isDragging:false,
+        font:'Impact'
     }]
 }
 
@@ -111,17 +143,10 @@ function renderCanvas() {
             line.width=parseInt(gCtx.measureText(`${line.txt}`).width)
             if (gMeme.lines.length && !gMeme.exportReady) drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2), gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2), gMeme.lines[gMeme.selectedLineIdx].width, gMeme.lines[gMeme.selectedLineIdx].size)
         });
+        
     }
 }
 
-function drawImg() {
-    gCtx.globalCompositeOperation = 'destination-over';
-    const img = new Image()
-    img.src = `./img/${gMeme.selectedImgId}.jpg`;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
-}
 
 
 function drawText(id) {
@@ -130,8 +155,8 @@ function drawText(id) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = currLine.strokeColor
     gCtx.fillStyle = currLine.color
-    gCtx.font = `${currLine.size}px Impact`
-    gCtx.textAlign = 'center'
+    gCtx.font = `${currLine.size}px ${currLine.font}`
+    gCtx.textAlign = `${currLine.align}`
     gCtx.textBaseline = 'middle';
     gCtx.fillText(currLine.txt, currLine.pos.x, currLine.pos.y)
     gCtx.strokeText(currLine.txt, currLine.pos.x, currLine.pos.y)
@@ -161,8 +186,14 @@ function saveRectToLine(line) {
 
 }
 
-function getCurrLine(id) {
-    return gMeme.lines[id]
+
+function drawImg() {
+    gCtx.globalCompositeOperation = 'destination-over';
+    const img = new Image()
+    img.src = `./img/${gMeme.selectedImgId}.jpg`;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    }
 }
 
 function newMemeLine() {
@@ -173,11 +204,12 @@ function newMemeLine() {
             y: 250
         },
         size: 40,
-        align: 'left',
+        align: 'center',
         color: 'white',
         strokeColor: 'black',
         width: parseInt(gCtx.measureText('This is my new line').width),
-        isDragging: false
+        isDragging: false,
+        font: 'Impact'
     })
     if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
     else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 450
@@ -187,6 +219,7 @@ function newMemeLine() {
 function removeSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
+
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
@@ -212,7 +245,7 @@ function resetMeme() {
         line.strokeColor='black'
         line.color='white'
         line.size=40
-        line.align= 'left'
+        line.align= 'center'
     });
     gMeme.lines[0].width = 312
     gMeme.lines[0].pos.x = 250
@@ -220,4 +253,8 @@ function resetMeme() {
     gMeme.lines[1].width = 362
     gMeme.lines[1].pos.x = 250
     gMeme.lines[1].pos.y = 450
+}
+
+function getCurrLine(id) {
+    return gMeme.lines[id]
 }

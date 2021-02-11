@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/media-queries.css">
+    <link rel="shortcut icon" type="image/jpg" href="css/favicon.jpg"/>
     <title>Meme Generator</title>
 </head>
 
@@ -50,7 +51,10 @@
                 <button onclick="onNewLine()">ADD LINE</button>
                 <button onclick="onClearCanvas()">CLEAR</button>
                 <button onclick="onDeleteLine()">DELETE LINE</button>
-                <button onclick="onDownloadMeme()">CLEAR GUIDELINES</button>
+                <button onclick="onClearLines()">GUIDELINES ON/OFF</button>
+
+                <a href="#" onclick="onDownloadMeme(this)">Download</a>
+
             </div>
         </div>
     </div>

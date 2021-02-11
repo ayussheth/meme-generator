@@ -1,7 +1,7 @@
 'use strict'
 var startX;
 var startY;
-
+//CHANGES TO THE APPEAREANCE OF THE LINE
 function onChangeColor() {
     let pickedColor = document.querySelector('#user-color-picker').value
     gMeme.lines[gMeme.selectedLineIdx].color = pickedColor
@@ -17,10 +17,11 @@ function onChangeStrokeColor() {
 
 function onChangeSize(val) {
     let currLineSize = gMeme.lines[gMeme.selectedLineIdx].size
+    clearMemeRects()
+    renderCanvas()
     if (val === 'plus') gMeme.lines[gMeme.selectedLineIdx].size = currLineSize + 5
     else if (currLineSize === 10) return
     else gMeme.lines[gMeme.selectedLineIdx].size = currLineSize - 5
-    clearMemeRects()
     renderCanvas()
 }
 
@@ -39,6 +40,7 @@ function onEditLine() {
     renderCanvas()
 }
 
+///////////////////////////////////
 function onSwitchLines() {
     ++gMeme.selectedLineIdx
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
@@ -65,13 +67,19 @@ function onDeleteLine() {
     removeSelectedLine()
     renderCanvas()
 }
-
-function onDownloadMeme() {
-    gMeme.exportReady = true
-    clearMemeRects()
-    renderCanvas()
+function onClearLines() { 
+    gMeme.exportReady = !gMeme.exportReady
+        renderCanvas()
 }
 
+function onDownloadMeme(elLink) {
+        const data = gElCanvas.toDataURL();
+        elLink.href = data;
+        elLink.download = 'ShrekMeme';
+    
+}
+
+//MOUSE AND TOUCH EVENTS 
 function onDown(ev) {
     ev.preventDefault();
     const pos = getEvPos(ev)
