@@ -44,6 +44,7 @@ function onSwitchLines() {
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.select();
+    gMeme.exportReady = false
     renderCanvas()
 }
 
@@ -53,12 +54,19 @@ function onNewLine() {
 }
 
 function onClearCanvas() {
+    gMeme.exportReady = false
     clearMeme()
     renderCanvas()
 }
 
 function onDeleteLine() {
     removeSelectedLine()
+    renderCanvas()
+}
+
+function onDownloadMeme() {
+    gMeme.exportReady = true
+    clearMemeRects()
     renderCanvas()
 }
 
@@ -76,18 +84,18 @@ function onDown(ev) {
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
-    elNewLine.select();
+    if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
 
 }
 
 
-function textHittest(x,y,textIndex){
-    let rect=gMeme.lines[textIndex].rect;
-    return(x>=rect.xStart && 
-        x<=rect.xStart+rect.xEnd &&
-        y>=rect.yStart && 
-        y<=rect.yEnd);
+function textHittest(x, y, textIndex) {
+    let rect = gMeme.lines[textIndex].rect;
+    return (x >= rect.xStart &&
+        x <= rect.xStart + rect.xEnd &&
+        y >= rect.yStart &&
+        y <= rect.yEnd);
 }
 
 function onMove(ev) {
@@ -103,6 +111,13 @@ function onMove(ev) {
     }
 }
 
+function onUp() {
+    gMeme.lines[gMeme.selectedLineIdx].isDragging = false
+    document.body.style.cursor = 'default'
+    renderCanvas()
+}
+
+
 function getEvPos(ev) {
     var pos = {
         x: ev.offsetX,
@@ -117,10 +132,4 @@ function getEvPos(ev) {
         }
     }
     return pos
-}
-
-function onUp() {
-    gMeme.lines[gMeme.selectedLineIdx].isDragging = false
-    document.body.style.cursor = 'default'
-    renderCanvas()
 }

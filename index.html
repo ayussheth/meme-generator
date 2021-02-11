@@ -34,8 +34,14 @@
             <button onclick="onEditLine()">Submit Line</button>
             <button onclick="onCloseEditor()">CLOSE EDITOR</button>
             <div class="buttons-container">
-                <input type="color" onchange="onChangeColor()" id="user-color-picker">
-                <input type="color" onchange="onChangeStrokeColor()" id="user-stroke-color-picker">
+                <div class="color-changer">
+                    <div class="change change-fill">
+                        <h5> Fill:</h5><input type="color" onchange="onChangeColor()" id="user-color-picker">
+                    </div>
+                    <div class="change change-stroke">
+                        <h5> Stroke:</h5><input type="color" onchange="onChangeStrokeColor()" id="user-stroke-color-picker">
+                    </div>
+                </div>
                 <button onclick="onChangeSize('plus')">+</button>
                 <button onclick="onChangeSize('minus')">-</button>
                 <button onclick="onSwitchLines()">SWITCH</button>
@@ -44,7 +50,7 @@
                 <button onclick="onNewLine()">ADD LINE</button>
                 <button onclick="onClearCanvas()">CLEAR</button>
                 <button onclick="onDeleteLine()">DELETE LINE</button>
-
+                <button onclick="onDownloadMeme()">CLEAR GUIDELINES</button>
             </div>
         </div>
     </div>

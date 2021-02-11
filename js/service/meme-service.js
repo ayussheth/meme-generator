@@ -66,7 +66,7 @@ var gCtx;
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    // selectedRect: {},
+    exportReady: false,
     lines: [{
         txt: 'This is my First line',
         pos: {
@@ -101,6 +101,7 @@ function initCanvas() {
 }
 
 function renderCanvas() {
+    console.log(gMeme.exportReady);
     const img = new Image()
     img.src = `./img/${gMeme.selectedImgId}.jpg`;
     img.onload = () => {
@@ -108,7 +109,7 @@ function renderCanvas() {
         gMeme.lines.forEach((line, idx) => {
             drawText(idx)
             saveRectToLine(line)
-            if (gMeme.lines.length) drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2), gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2), gMeme.lines[gMeme.selectedLineIdx].width, gMeme.lines[gMeme.selectedLineIdx].size)
+            if (gMeme.lines.length && !gMeme.exportReady) drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2), gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2), gMeme.lines[gMeme.selectedLineIdx].width, gMeme.lines[gMeme.selectedLineIdx].size)
         });
     }
 }
@@ -127,7 +128,6 @@ function clearCanvas() {
     gMeme.lines.splice(2, gMeme.lines.length)
     gMeme.lines[0].txt = 'This is my First line'
     gMeme.lines[1].txt = 'This is my Second line'
-
 }
 
 function clearMeme() {
@@ -136,7 +136,12 @@ function clearMeme() {
         line.txt = ``
     });
 }
+function clearMemeRects() { 
+    gMeme.lines.forEach((line) => {
+        line.rect={}
+    });
 
+}
 function drawText(id) {
     let currLine = getCurrLine(id)
     gCtx.globalCompositeOperation = 'source-over';
