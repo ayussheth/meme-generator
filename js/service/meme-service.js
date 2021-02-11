@@ -220,7 +220,9 @@ function removeSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
-
+function changeFont(font) { 
+gMeme.lines[gMeme.selectedLineIdx].font = font
+}
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gMeme.lines.splice(2, gMeme.lines.length)

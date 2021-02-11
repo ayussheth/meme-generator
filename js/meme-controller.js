@@ -8,7 +8,12 @@ function onChangeColor() {
     gMeme.lines[gMeme.selectedLineIdx].color = pickedColor
     renderCanvas()
 }
-
+function onUpdateFont() { 
+    let selector = document.getElementById('selectFontFamily');
+    let font = selector.options[selector.selectedIndex].value; 
+    changeFont(font)   
+    renderCanvas()
+}
 function onChangeStrokeColor() {
     let pickedColor = document.querySelector('#user-stroke-color-picker').value
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = pickedColor
