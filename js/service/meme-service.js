@@ -77,7 +77,8 @@ var gMeme = {
         align: 'left',
         color: 'red',
         strokeColor: 'black',
-        width: 312
+        width: 312,
+        isDragging:false
     }, {
         txt: 'This is my Second line',
         pos: {
@@ -88,7 +89,8 @@ var gMeme = {
         align: 'left',
         color: 'red',
         strokeColor: 'black',
-        width: 362
+        width: 362,
+        isDragging:false
     }]
 }
 
@@ -187,7 +189,8 @@ function newMemeLine() {
         align: 'left',
         color: 'white',
         strokeColor: 'black',
-        width: parseInt(gCtx.measureText('This is my new line').width)
+        width: parseInt(gCtx.measureText('This is my new line').width),
+        isDragging: false
     })
     if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
     else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 450
@@ -198,18 +201,3 @@ function removeSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
-function addMouseListeners() {
-    // gElCanvas.addEventListener('mousemove', onMove)
-
-    gElCanvas.addEventListener('mousedown', onDown)
-
-    gElCanvas.addEventListener('mouseup', onUp)
-}
-
-function addTouchListeners() {
-    gElCanvas.addEventListener('touchmove', onMove)
-
-    gElCanvas.addEventListener('touchstart', onDown)
-
-    gElCanvas.addEventListener('touchend', onUp)
-}
