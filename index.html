@@ -31,16 +31,15 @@
             <canvas id="img-canvas" height="500" width="500" onclick=""></canvas>
         </div>
         <div class="meme-editor">
-            <input type="text" placeholder="Now editing top text" class="line-input">
-            <!-- <button onclick="onEditLine()">Submit Line</button> -->
+            <input type="text" placeholder="Now editing top text" class="line-input" oninput="onEditLine()">
             <button onclick="onCloseEditor()">CLOSE EDITOR</button>
             <div class="buttons-container">
                 <div class="color-changer">
                     <div class="change change-fill">
-                        <h5> Fill:</h5><input type="color"  id="user-color-picker">
+                        <h5> Fill:</h5><input type="color"  id="user-color-picker" oninput="onChangeColor()">
                     </div>
                     <div class="change change-stroke">
-                        <h5> Stroke:</h5><input type="color"  id="user-stroke-color-picker">
+                        <h5> Stroke:</h5><input type="color"  id="user-stroke-color-picker" oninput="onChangeStrokeColor()">
                     </div>
                 </div>
                 <button onclick="onChangeSize('plus')">+</button>
