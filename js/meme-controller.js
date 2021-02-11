@@ -17,8 +17,10 @@ function onChangeStrokeColor() {
 
 function onChangeSize(val) {
     let currLineSize = gMeme.lines[gMeme.selectedLineIdx].size
-    if (val === 'minus') gMeme.lines[gMeme.selectedLineIdx].size = currLineSize - 5
-    else gMeme.lines[gMeme.selectedLineIdx].size = currLineSize + 5
+    if (val === 'plus') gMeme.lines[gMeme.selectedLineIdx].size = currLineSize + 5
+    else if (currLineSize === 10) return
+    else gMeme.lines[gMeme.selectedLineIdx].size = currLineSize - 5
+    clearMemeRects()
     renderCanvas()
 }
 
@@ -86,9 +88,7 @@ function onDown(ev) {
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
     if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
-
 }
-
 
 function textHittest(x, y, textIndex) {
     let rect = gMeme.lines[textIndex].rect;

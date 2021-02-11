@@ -101,7 +101,6 @@ function initCanvas() {
 }
 
 function renderCanvas() {
-    console.log(gMeme.exportReady);
     const img = new Image()
     img.src = `./img/${gMeme.selectedImgId}.jpg`;
     img.onload = () => {
@@ -109,6 +108,7 @@ function renderCanvas() {
         gMeme.lines.forEach((line, idx) => {
             drawText(idx)
             saveRectToLine(line)
+            line.width=parseInt(gCtx.measureText(`${line.txt}`).width)
             if (gMeme.lines.length && !gMeme.exportReady) drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2), gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2), gMeme.lines[gMeme.selectedLineIdx].width, gMeme.lines[gMeme.selectedLineIdx].size)
         });
     }
@@ -123,25 +123,7 @@ function drawImg() {
     }
 }
 
-function clearCanvas() {
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    gMeme.lines.splice(2, gMeme.lines.length)
-    gMeme.lines[0].txt = 'This is my First line'
-    gMeme.lines[1].txt = 'This is my Second line'
-}
 
-function clearMeme() {
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    gMeme.lines.forEach((line) => {
-        line.txt = ``
-    });
-}
-function clearMemeRects() { 
-    gMeme.lines.forEach((line) => {
-        line.rect={}
-    });
-
-}
 function drawText(id) {
     let currLine = getCurrLine(id)
     gCtx.globalCompositeOperation = 'source-over';
@@ -206,3 +188,36 @@ function removeSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+    gMeme.lines.splice(2, gMeme.lines.length)
+    gMeme.lines[0].txt = 'This is my First line'
+    gMeme.lines[1].txt = 'This is my Second line'
+}
+
+function clearMeme() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+    gMeme.lines.forEach((line) => {
+        line.txt = ``
+    });
+}
+function clearMemeRects() { 
+    gMeme.lines.forEach((line) => {
+        line.rect={}
+    });
+
+}
+function resetMeme() { 
+    gMeme.lines.forEach(line => {
+        line.strokeColor='black'
+        line.color='white'
+        line.size=40
+        line.align= 'left'
+    });
+    gMeme.lines[0].width = 312
+    gMeme.lines[0].pos.x = 250
+    gMeme.lines[0].pos.y = 50
+    gMeme.lines[1].width = 362
+    gMeme.lines[1].pos.x = 250
+    gMeme.lines[1].pos.y = 450
+}

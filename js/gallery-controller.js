@@ -11,6 +11,7 @@ function renderEditor(id) {
     elEditorContainer.classList.add('shown')
     elGalleryContainer.classList.add('shrunken')
     gMeme.exportReady = false 
+    resetMeme()
     clearCanvas()
     initCanvas()
 
