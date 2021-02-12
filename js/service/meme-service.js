@@ -143,9 +143,8 @@ function renderCanvas() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
             line.width = parseInt(gCtx.measureText(`${line.txt}`).width)
-            saveRectToLine(line)
             drawText(idx)
-            // if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
+            if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
         });
     }
 }
@@ -184,7 +183,6 @@ function markActiveLine() {
             break;
     }
     drawRect(x, y, currLine.width, currLine.size)
-    saveRectToLine(currLine)
 }
 
 function drawRect(x, y, width, height) {
@@ -196,22 +194,7 @@ function drawRect(x, y, width, height) {
     gCtx.stroke()
 }
 
-function saveRectToLine(line) {
-    let currLine = getSelectedLine()
-    gCtx.font = `${currLine.size}px ${currLine.font}`
-    gCtx.beginPath()
-    line.rect = {
-        xStart: line.pos.x - (line.width / 2),
-        yStart: line.pos.y - (line.size / 2),
-        xEnd: line.pos.x + line.width,
-        yEnd: line.pos.y - (line.size / 2) + line.size
 
-    }
-    gCtx.fillStyle = 'red'
-    gCtx.rect(line.rect.xStart, line.rect.yStart, line.width, line.size)
-    gCtx.fillRect(line.rect.xStart, line.rect.yStart, line.width, line.size)
-
-}
 
 
 function drawImg() {

@@ -64,7 +64,7 @@ function onChangeAlign(val) {
 ///////////////////////////////////
 function onSwitchLines() {
     let activeLine = getSelectedLine()
-    ++gMeme.selectedLineIdx
+        ++gMeme.selectedLineIdx
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = activeLine.txt
@@ -92,7 +92,7 @@ function onDeleteLine() {
 
 function onClearLines() {
     let elClearButton = document.querySelector('.toggle-lines-icon')
-    if( elClearButton.innerHTML === '<i class="fas fa-eye-slash"></i>') elClearButton.innerHTML = '<i class="fas fa-eye"></i>'
+    if (elClearButton.innerHTML === '<i class="fas fa-eye-slash"></i>') elClearButton.innerHTML = '<i class="fas fa-eye"></i>'
     else elClearButton.innerHTML = '<i class="fas fa-eye-slash"></i>'
     gMeme.exportReady = !gMeme.exportReady
     renderCanvas()
@@ -109,16 +109,14 @@ function onDownloadMeme(elLink) {
 function onDown(ev) {
     ev.preventDefault();
     const pos = getEvPos(ev)
-    console.log(pos);
-        gMeme.lines.forEach((line,idx) => {
-            if (textHittest(pos.x, pos.y, idx)) {
-                console.log(`hit the line:${gMeme.lines[idx].txt}`);
-                gMeme.selectedLineIdx = idx;
-                gMeme.lines[gMeme.selectedLineIdx].isDragging = true
-                document.body.style.cursor = 'grab'
-                renderCanvas()
-            }
-        });
+    gMeme.lines.forEach((line, idx) => {
+        if (textHittest(pos.x, pos.y, idx)) {
+            gMeme.selectedLineIdx = idx;
+            gMeme.lines[gMeme.selectedLineIdx].isDragging = true
+            document.body.style.cursor = 'grab'
+            renderCanvas()
+        }
+    });
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
@@ -127,11 +125,12 @@ function onDown(ev) {
 }
 
 function textHittest(x, y, textIndex) {
-    let rect = gMeme.lines[textIndex].rect;
-    return (x >= rect.xStart &&
-        x <= rect.xStart + rect.xEnd &&
-        y >= rect.yStart &&
-        y <= rect.yEnd + rect.yStart);
+    let line = gMeme.lines[textIndex];
+    return (y > line.pos.y - line.size &&
+        y < line.pos.y + (gElCanvas.height - line.pos.y) &&
+        x > line.pos.x - (line.width / 2) &&
+        x < line.pos.x + (line.width / 2) 
+    )
 }
 
 
