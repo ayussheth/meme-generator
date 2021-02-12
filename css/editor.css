@@ -81,17 +81,23 @@ margin: 0 auto;}
     margin-top: 100% ;
     
 }
+.color-changer .fas.fa-save {
+
+    margin-top: 120% ;
+    
+}
 
 .meme-editor button {
     width: 15%;
     height: 35px;
     border: 2px solid lightgray;
     border-radius: 10px;
+    font-size: 1.2rem;
 }
 
 .line-input {
     height: 35px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #8cb04e;
     border-radius: 10px;
     border: 2px solid #8cb04e;

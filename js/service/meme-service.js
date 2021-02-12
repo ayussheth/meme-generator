@@ -100,10 +100,10 @@ var gMeme = {
     lines: [{
         txt: 'This is my First line',
         pos: {
-            x: 250,
-            y: 50
+            x: 125,
+            y: 25
         },
-        size: 40,
+        size: 25,
         align: 'center',
         color: 'red',
         strokeColor: 'black',
@@ -113,10 +113,10 @@ var gMeme = {
     }, {
         txt: 'This is my Second line',
         pos: {
-            x: 250,
-            y: 450
+            x: 125,
+            y: 100
         },
-        size: 40,
+        size: 25,
         align: 'center',
         color: 'red',
         strokeColor: 'black',
@@ -216,10 +216,10 @@ function newMemeLine() {
     gMeme.lines.push({
         txt: 'This is my new line',
         pos: {
-            x: 250,
-            y: 250
+            x: 125,
+            y: 125
         },
-        size: 40,
+        size: 25,
         align: 'center',
         color: 'white',
         strokeColor: 'black',
@@ -228,7 +228,7 @@ function newMemeLine() {
         font: 'Impact'
     })
     if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
-    else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 450
+    else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 300
 
 }
 
@@ -265,15 +265,15 @@ function resetMeme() {
     gMeme.lines.forEach(line => {
         line.strokeColor = 'black'
         line.color = 'white'
-        line.size = 40
+        line.size = 25
         line.align = 'center'
     });
     gMeme.lines[0].width = 312
-    gMeme.lines[0].pos.x = 250
-    gMeme.lines[0].pos.y = 50
+    gMeme.lines[0].pos.x = 185
+    gMeme.lines[0].pos.y = 25
     gMeme.lines[1].width = 362
-    gMeme.lines[1].pos.x = 250
-    gMeme.lines[1].pos.y = 450
+    gMeme.lines[1].pos.x = 185
+    gMeme.lines[1].pos.y = 350
 }
 
 function getCurrLine(id) {
