@@ -107,20 +107,19 @@ function onDownloadMeme(elLink) {
 
 //MOUSE AND TOUCH EVENTS 
 function onDown(ev) {
-    let activeLine = getSelectedLine()
     ev.preventDefault();
     const pos = getEvPos(ev)
     for (var i = 0; i < gMeme.lines.length; i++) {
         if (textHittest(pos.x, pos.y, i)) {
             console.log(`hit the line:${gMeme.lines[i].txt}`);
             gMeme.selectedLineIdx = i;
-            activeLine.isDragging = true
+            gMeme.lines[gMeme.selectedLineIdx].isDragging = true
             document.body.style.cursor = 'grab'
         }
     }
     let elNewLine = document.querySelector('.line-input')
-    elNewLine.placeholder = activeLine.txt
-    elNewLine.value = activeLine.txt
+    elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
+    elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
     if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
 }

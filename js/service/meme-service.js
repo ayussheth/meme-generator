@@ -216,8 +216,8 @@ function newMemeLine() {
     gMeme.lines.push({
         txt: 'This is my new line',
         pos: {
-            x: 125,
-            y: 125
+            x: 185,
+            y: 185
         },
         size: 25,
         align: 'center',
