@@ -1,0 +1,29 @@
+.footer { 
+    overflow:hidden;
+    
+
+}
+footer { 
+    height: 350px;
+    background-color: #e1dfb6;
+
+}
+.about-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin:  auto;
+    padding-top: 3%;
+}
+
+.img-container img { 
+    border-radius: 50%;
+    height: 250px;
+}
+.about-container { 
+    padding-left: 5%;
+}
+.about-container p { 
+    font-size: 1.6rem;
+}

@@ -82,14 +82,6 @@ header {
 }
 #img-canvas{
     border-radius: 10px;
+    height: 20%;
 }
 
-.footer { 
-    overflow:hidden;
-
-}
-footer { 
-    height: 90px;
-    background-color: #e1dfb6;
-    width: 100vw;
-}

@@ -4,54 +4,71 @@ var startY;
 //CHANGES TO THE APPEAREANCE OF THE LINE
 
 function onChangeColor() {
+    let activeLine = getSelectedLine()
     let pickedColor = document.querySelector('#user-color-picker').value
-    gMeme.lines[gMeme.selectedLineIdx].color = pickedColor
+    activeLine.color = pickedColor
     renderCanvas()
 }
-function onUpdateFont() { 
+
+function onUpdateFont() {
     let selector = document.getElementById('selectFontFamily');
-    let font = selector.options[selector.selectedIndex].value; 
-    changeFont(font)   
+    let font = selector.options[selector.selectedIndex].value;
+    changeFont(font)
     renderCanvas()
 }
+
 function onChangeStrokeColor() {
+    let activeLine = getSelectedLine()
     let pickedColor = document.querySelector('#user-stroke-color-picker').value
-    gMeme.lines[gMeme.selectedLineIdx].strokeColor = pickedColor
+    activeLine.strokeColor = pickedColor
     renderCanvas()
 }
 
 function onChangeSize(val) {
-    let currLineSize = gMeme.lines[gMeme.selectedLineIdx].size
+    let currLine = getSelectedLine()
+    let currLineSize = currLine.size
     clearMemeRects()
     renderCanvas()
-    if (val === 'plus') gMeme.lines[gMeme.selectedLineIdx].size = currLineSize + 5
+    if (val === 'plus') currLine.size = currLineSize + 5
     else if (currLineSize === 10) return
-    else gMeme.lines[gMeme.selectedLineIdx].size = currLineSize - 5
+    else currLine.size = currLineSize - 5
     renderCanvas()
 }
 
 function onMoveLine(val) {
-    let currLinePos = gMeme.lines[gMeme.selectedLineIdx].pos.y
-    if (val === 'down') gMeme.lines[gMeme.selectedLineIdx].pos.y = currLinePos + 5
-    else gMeme.lines[gMeme.selectedLineIdx].pos.y = currLinePos - 5
+    let activeLine = getSelectedLine()
+    let currLinePos = activeLine.pos.y
+    if (val === 'down') activeLine.pos.y = currLinePos + 5
+    else activeLine.pos.y = currLinePos - 5
     renderCanvas()
 
 }
 
 function onEditLine() {
+    let activeLine = getSelectedLine()
     let newLineInput = document.querySelector('.line-input').value
-    gMeme.lines[gMeme.selectedLineIdx].txt = newLineInput
-    gMeme.lines[gMeme.selectedLineIdx].width = parseInt(gCtx.measureText(newLineInput).width)
+    activeLine.txt = newLineInput
+    activeLine.width = parseInt(gCtx.measureText(newLineInput).width)
     renderCanvas()
 }
 
+// function onFacebookShare() {
+
+// }
+
+function onChangeAlign(val) {
+    let currLine = getSelectedLine()
+    currLine.align = val
+    renderCanvas()
+}
 ///////////////////////////////////
 function onSwitchLines() {
+    let activeLine = getSelectedLine()
     ++gMeme.selectedLineIdx
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
     let elNewLine = document.querySelector('.line-input')
-    elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
-    elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
+    elNewLine.placeholder = activeLine.txt
+    elNewLine.value = activeLine.txt
     elNewLine.select();
     gMeme.exportReady = false
     renderCanvas()
@@ -72,33 +89,35 @@ function onDeleteLine() {
     removeSelectedLine()
     renderCanvas()
 }
-function onClearLines() { 
+
+function onClearLines() {
     gMeme.exportReady = !gMeme.exportReady
-        renderCanvas()
+    renderCanvas()
 }
 
 function onDownloadMeme(elLink) {
-        const data = gElCanvas.toDataURL();
-        elLink.href = data;
-        elLink.download = 'ShrekMeme';
-    
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'ShrekMeme';
+
 }
 
 //MOUSE AND TOUCH EVENTS 
 function onDown(ev) {
+    let activeLine = getSelectedLine()
     ev.preventDefault();
     const pos = getEvPos(ev)
     for (var i = 0; i < gMeme.lines.length; i++) {
         if (textHittest(pos.x, pos.y, i)) {
             console.log(`hit the line:${gMeme.lines[i].txt}`);
             gMeme.selectedLineIdx = i;
-            gMeme.lines[gMeme.selectedLineIdx].isDragging = true
+            activeLine.isDragging = true
             document.body.style.cursor = 'grab'
         }
     }
     let elNewLine = document.querySelector('.line-input')
-    elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
-    elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
+    elNewLine.placeholder = activeLine.txt
+    elNewLine.value = activeLine.txt
     if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
 }
@@ -112,20 +131,22 @@ function textHittest(x, y, textIndex) {
 }
 
 function onMove(ev) {
-    if (gMeme.lines[gMeme.selectedLineIdx].isDragging) {
+    let activeLine = getSelectedLine()
+    if (activeLine.isDragging) {
         document.body.style.cursor = 'grabbing'
         const pos = getEvPos(ev)
-        const dx = pos.x - gMeme.lines[gMeme.selectedLineIdx].pos.x
-        const dy = pos.y - gMeme.lines[gMeme.selectedLineIdx].pos.y
-        gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
-        gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
-        gMeme.lines[gMeme.selectedLineIdx].pos = pos
+        const dx = pos.x - activeLine.pos.x
+        const dy = pos.y - activeLine.pos.y
+        activeLine.pos.x += dx
+        activeLine.pos.y += dy
+        activeLine.pos = pos
         renderCanvas()
     }
 }
 
 function onUp() {
-    gMeme.lines[gMeme.selectedLineIdx].isDragging = false
+    let activeLine = getSelectedLine()
+    activeLine.isDragging = false
     document.body.style.cursor = 'default'
     renderCanvas()
 }

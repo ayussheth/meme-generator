@@ -13,7 +13,8 @@ position: relative;
 right: 0;
 display: grid;
 padding: 5%;
-grid-template-columns: 3fr 1fr;
+grid-gap: 10%;
+grid-template-columns: 50% 40%;
 }
 
 .meme-editor{

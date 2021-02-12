@@ -37,32 +37,32 @@ var gImgs = [{
     {
         id: 7,
         url: 'img/7.jpg',
-        keywords: ['shrek', 'funny','awkward']
+        keywords: ['shrek', 'funny', 'awkward']
     },
     {
         id: 8,
         url: 'img/8.jpg',
-        keywords: ['shrek','angry']
+        keywords: ['shrek', 'angry']
     },
     {
         id: 9,
         url: 'img/9.jpg',
-        keywords: ['shrek','real-life','funny','awkward']
+        keywords: ['shrek', 'real-life', 'funny', 'awkward']
     },
     {
         id: 10,
         url: 'img/10.jpg',
-        keywords: ['shrek','donkey','awkward']
+        keywords: ['shrek', 'donkey', 'awkward']
     },
     {
         id: 11,
         url: 'img/11.jpg',
-        keywords: ['shrek','shrexy','smile','awkward']
+        keywords: ['shrek', 'shrexy', 'smile', 'awkward']
     },
     {
         id: 12,
         url: 'img/12.jpg',
-        keywords: ['shrek','donkey','awkward','smile']
+        keywords: ['shrek', 'donkey', 'awkward', 'smile']
     },
     {
         id: 13,
@@ -108,8 +108,8 @@ var gMeme = {
         color: 'red',
         strokeColor: 'black',
         width: 312,
-        isDragging:false,
-        font:'Impact'
+        isDragging: false,
+        font: 'Impact'
     }, {
         txt: 'This is my Second line',
         pos: {
@@ -121,8 +121,8 @@ var gMeme = {
         color: 'red',
         strokeColor: 'black',
         width: 362,
-        isDragging:false,
-        font:'Impact'
+        isDragging: false,
+        font: 'Impact'
     }]
 }
 
@@ -140,13 +140,11 @@ function renderCanvas() {
         gMeme.lines.forEach((line, idx) => {
             drawText(idx)
             saveRectToLine(line)
-            line.width=parseInt(gCtx.measureText(`${line.txt}`).width)
-            if (gMeme.lines.length && !gMeme.exportReady) drawRect(gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2), gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2), gMeme.lines[gMeme.selectedLineIdx].width, gMeme.lines[gMeme.selectedLineIdx].size)
+            line.width = parseInt(gCtx.measureText(`${line.txt}`).width)
         });
-        
+        if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
     }
 }
-
 
 
 function drawText(id) {
@@ -162,26 +160,44 @@ function drawText(id) {
     gCtx.strokeText(currLine.txt, currLine.pos.x, currLine.pos.y)
 
 }
+function markActiveLine() {
+    let currLine = getSelectedLine()
+    let x,y
+    switch (currLine.align) {
+        case 'right':
+            x= currLine.pos.x-(currLine.width)
+            y= currLine.pos.y-(currLine.size / 2)
+            break;
+        case 'left':
+            x= currLine.pos.x
+            y= currLine.pos.y-(currLine.size / 2)
+            break;
+        case 'center':
+            x= currLine.pos.x-(currLine.width / 2)
+            y= currLine.pos.y-(currLine.size / 2)
+            break;
+    }
+    drawRect(x, y, currLine.width, currLine.size)
+}
 
 function drawRect(x, y, width, height) {
+
     gCtx.beginPath()
     gCtx.rect(x, y, width, height)
     gCtx.fillStyle = 'transparent'
     gCtx.strokeStyle = 'white'
-    if (x === gMeme.lines[gMeme.selectedLineIdx].pos.x - (gMeme.lines[gMeme.selectedLineIdx].width / 2) && y === gMeme.lines[gMeme.selectedLineIdx].pos.y - (gMeme.lines[gMeme.selectedLineIdx].size / 2)) {
-        gCtx.fillRect(x, y, width, height)
-        gCtx.stroke()
-    }
+    gCtx.fillRect(x, y, width, height)
+    gCtx.stroke()
 }
 
 function saveRectToLine(line) {
     gCtx.beginPath()
-    gCtx.rect(line.pos.x-(line.width/2), line.pos.y-(line.size/2), line.width, line.size)
+    gCtx.rect(line.pos.x - (line.width / 2), line.pos.y - (line.size / 2), line.width, line.size)
     line.rect = {
-        xStart: line.pos.x-(line.width/2),
-        yStart: line.pos.y-(line.size/2),
+        xStart: line.pos.x - (line.width / 2),
+        yStart: line.pos.y - (line.size / 2),
         xEnd: line.width,
-        yEnd: line.pos.y-(line.size/2)+line.size
+        yEnd: line.pos.y - (line.size / 2) + line.size
     }
 
 }
@@ -220,9 +236,10 @@ function removeSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
-function changeFont(font) { 
-gMeme.lines[gMeme.selectedLineIdx].font = font
+function changeFont(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font
 }
+
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gMeme.lines.splice(2, gMeme.lines.length)
@@ -236,18 +253,20 @@ function clearMeme() {
         line.txt = ``
     });
 }
-function clearMemeRects() { 
+
+function clearMemeRects() {
     gMeme.lines.forEach((line) => {
-        line.rect={}
+        line.rect = {}
     });
 
 }
-function resetMeme() { 
+
+function resetMeme() {
     gMeme.lines.forEach(line => {
-        line.strokeColor='black'
-        line.color='white'
-        line.size=40
-        line.align= 'center'
+        line.strokeColor = 'black'
+        line.color = 'white'
+        line.size = 40
+        line.align = 'center'
     });
     gMeme.lines[0].width = 312
     gMeme.lines[0].pos.x = 250
@@ -259,4 +278,8 @@ function resetMeme() {
 
 function getCurrLine(id) {
     return gMeme.lines[id]
+}
+
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }

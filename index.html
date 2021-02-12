@@ -45,6 +45,12 @@
                                 oninput="onChangeStrokeColor()">
                         </div>
                     </div>
+
+
+                    <button onclick="onChangeAlign('left')"> <i class="fas fa-align-left"></i> </button>
+                    <button onclick="onChangeAlign('center')"><i class="fas fa-align-center"></i>
+                    <button onclick="onChangeAlign('right')"><i class="fas fa-align-right"></i></button>
+                    </button>
                     <button onclick="onChangeSize('plus')">+</button>
                     <button onclick="onChangeSize('minus')">-</button>
                     <button onclick="onSwitchLines()">SWITCH</button>
@@ -62,9 +68,11 @@
                         <option> Verdana </option>
                         <option> Lucida Sans Unicode </option>
                     </select>
-                    <!-- <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
+
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"
+                        onclick="onFacebookShare()">
                         Share on Facebook
-</a> -->
+                    </a>
                     <a href="#" onclick="onDownloadMeme(this)">Download</a>
 
                 </div>
@@ -73,8 +81,16 @@
     </div>
     <div class="footer">
         <footer>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia praesentium animi dolorum possimus nulla
-            est!
+            <div class="about-section">
+                <div class="img-container">
+                    <img src="img/gali.jpg" alt="" srcset="">
+                </div>
+                <div class="about-container">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque esse necessitatibus voluptates
+                        temporibus consectetur harum.</p>
+                    <a href="https://galinickel.github.io/ca-gallery-gali">Visit portfolio</a>
+                </div>
+            </div>
         </footer>
     </div>
     <script src="js/service/storage-service.js"></script>
