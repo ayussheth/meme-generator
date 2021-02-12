@@ -92,7 +92,7 @@
         height: 100%;
     }
 
- 
+
 }
 
 @media (max-width: 600px) {
@@ -146,12 +146,6 @@
         padding: 2%;
         margin-bottom: 5%;
     }
-
-    #img-canvas {
-        width: 100%;
-    }
-
-  
 
     .color-changer {
         justify-content: space-evenly;

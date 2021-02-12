@@ -84,3 +84,14 @@ header {
     border-radius: 10px;
 }
 
+.exit{
+    opacity: 0;
+    transition: all .2s;
+}
+.x-btn{
+    color: darkgray;
+}
+.x-btn:hover .exit {
+    opacity: 100%;
+    color: darkgray;
+}

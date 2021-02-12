@@ -98,32 +98,36 @@ var gMeme = {
     selectedLineIdx: 0,
     exportReady: false,
     lines: [{
-        txt: 'This is my First line',
-        pos: {
-            x: 125,
-            y: 25
+            txt: 'This is my First line',
+            pos: {
+                x: 125,
+                y: 25
+            },
+            size: 25,
+            align: 'center',
+            color: 'red',
+            strokeColor: 'black',
+            width: 312,
+            isDragging: false,
+            font: 'Impact',
+            rect: {}
         },
-        size: 25,
-        align: 'center',
-        color: 'red',
-        strokeColor: 'black',
-        width: 312,
-        isDragging: false,
-        font: 'Impact'
-    }, {
-        txt: 'This is my Second line',
-        pos: {
-            x: 125,
-            y: 100
-        },
-        size: 25,
-        align: 'center',
-        color: 'red',
-        strokeColor: 'black',
-        width: 362,
-        isDragging: false,
-        font: 'Impact'
-    }]
+        {
+            txt: 'This is my Second line',
+            pos: {
+                x: 125,
+                y: 100
+            },
+            size: 25,
+            align: 'center',
+            color: 'red',
+            strokeColor: 'black',
+            width: 362,
+            isDragging: false,
+            font: 'Impact',
+            rect: {}
+        }
+    ]
 }
 
 function initCanvas() {
@@ -138,11 +142,11 @@ function renderCanvas() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
-            drawText(idx)
-            saveRectToLine(line)
             line.width = parseInt(gCtx.measureText(`${line.txt}`).width)
+            saveRectToLine(line)
+            drawText(idx)
+            // if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
         });
-        if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
     }
 }
 
@@ -160,28 +164,30 @@ function drawText(id) {
     gCtx.strokeText(currLine.txt, currLine.pos.x, currLine.pos.y)
 
 }
+
 function markActiveLine() {
     let currLine = getSelectedLine()
-    let x,y
+    gCtx.font = `${currLine.size}px ${currLine.font}`
+    let x, y
     switch (currLine.align) {
         case 'right':
-            x= currLine.pos.x-(currLine.width)
-            y= currLine.pos.y-(currLine.size / 2)
+            x = currLine.pos.x - (currLine.width)
+            y = currLine.pos.y - (currLine.size / 2)
             break;
         case 'left':
-            x= currLine.pos.x
-            y= currLine.pos.y-(currLine.size / 2)
+            x = currLine.pos.x
+            y = currLine.pos.y - (currLine.size / 2)
             break;
         case 'center':
-            x= currLine.pos.x-(currLine.width / 2)
-            y= currLine.pos.y-(currLine.size / 2)
+            x = currLine.pos.x - (currLine.width / 2)
+            y = currLine.pos.y - (currLine.size / 2)
             break;
     }
     drawRect(x, y, currLine.width, currLine.size)
+    saveRectToLine(currLine)
 }
 
 function drawRect(x, y, width, height) {
-
     gCtx.beginPath()
     gCtx.rect(x, y, width, height)
     gCtx.fillStyle = 'transparent'
@@ -191,14 +197,19 @@ function drawRect(x, y, width, height) {
 }
 
 function saveRectToLine(line) {
+    let currLine = getSelectedLine()
+    gCtx.font = `${currLine.size}px ${currLine.font}`
     gCtx.beginPath()
-    gCtx.rect(line.pos.x - (line.width / 2), line.pos.y - (line.size / 2), line.width, line.size)
     line.rect = {
         xStart: line.pos.x - (line.width / 2),
         yStart: line.pos.y - (line.size / 2),
-        xEnd: line.width,
+        xEnd: line.pos.x + line.width,
         yEnd: line.pos.y - (line.size / 2) + line.size
+
     }
+    gCtx.fillStyle = 'red'
+    gCtx.rect(line.rect.xStart, line.rect.yStart, line.width, line.size)
+    gCtx.fillRect(line.rect.xStart, line.rect.yStart, line.width, line.size)
 
 }
 
@@ -225,7 +236,8 @@ function newMemeLine() {
         strokeColor: 'black',
         width: parseInt(gCtx.measureText('This is my new line').width),
         isDragging: false,
-        font: 'Impact'
+        font: 'Impact',
+        rect: {}
     })
     if (gMeme.lines.length === 1) gMeme.lines[0].pos.y = 50
     else if (gMeme.lines.length === 2) gMeme.lines[1].pos.y = 300

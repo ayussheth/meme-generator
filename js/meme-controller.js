@@ -109,14 +109,16 @@ function onDownloadMeme(elLink) {
 function onDown(ev) {
     ev.preventDefault();
     const pos = getEvPos(ev)
-    for (var i = 0; i < gMeme.lines.length; i++) {
-        if (textHittest(pos.x, pos.y, i)) {
-            console.log(`hit the line:${gMeme.lines[i].txt}`);
-            gMeme.selectedLineIdx = i;
-            gMeme.lines[gMeme.selectedLineIdx].isDragging = true
-            document.body.style.cursor = 'grab'
-        }
-    }
+    console.log(pos);
+        gMeme.lines.forEach((line,idx) => {
+            if (textHittest(pos.x, pos.y, idx)) {
+                console.log(`hit the line:${gMeme.lines[idx].txt}`);
+                gMeme.selectedLineIdx = idx;
+                gMeme.lines[gMeme.selectedLineIdx].isDragging = true
+                document.body.style.cursor = 'grab'
+                renderCanvas()
+            }
+        });
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
@@ -129,8 +131,10 @@ function textHittest(x, y, textIndex) {
     return (x >= rect.xStart &&
         x <= rect.xStart + rect.xEnd &&
         y >= rect.yStart &&
-        y <= rect.yEnd);
+        y <= rect.yEnd + rect.yStart);
 }
+
+
 
 function onMove(ev) {
     let activeLine = getSelectedLine()

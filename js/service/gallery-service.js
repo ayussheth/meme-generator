@@ -4,9 +4,9 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function init() {
     initCanvas();
-    renderGallery();
     addMouseListeners();
     addTouchListeners();
+    renderGallery();
 }
 
 function renderGallery() {
@@ -19,14 +19,12 @@ function renderGallery() {
 }
 
 function addMouseListeners() {
-    gElCanvas.addEventListener('mousemove', onMove)
-    gElCanvas.addEventListener('mousedown', onDown)
-    gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('mousemove', onMove);
+    gElCanvas.addEventListener('mousedown', onDown);
+    gElCanvas.addEventListener('mouseup', onUp);
 }
-
 function addTouchListeners() {
-    gElCanvas.addEventListener('touchmove', onMove)
-    gElCanvas.addEventListener('touchstart', onDown)
-    gElCanvas.addEventListener('touchend', onUp)
+    gElCanvas.addEventListener('touchmove', onMove);
+    gElCanvas.addEventListener('touchstart', onDown);
+    gElCanvas.addEventListener('touchend', onUp);
 }
-
