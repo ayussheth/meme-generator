@@ -80,7 +80,7 @@ function onNewLine() {
 }
 
 function onClearCanvas() {
-    gMeme.exportReady = false
+    gMeme.exportReady = true
     clearMeme()
     renderCanvas()
 }
@@ -91,6 +91,9 @@ function onDeleteLine() {
 }
 
 function onClearLines() {
+    let elClearButton = document.querySelector('.toggle-lines-icon')
+    if( elClearButton.innerHTML === '<i class="fas fa-eye-slash"></i>') elClearButton.innerHTML = '<i class="fas fa-eye"></i>'
+    else elClearButton.innerHTML = '<i class="fas fa-eye-slash"></i>'
     gMeme.exportReady = !gMeme.exportReady
     renderCanvas()
 }

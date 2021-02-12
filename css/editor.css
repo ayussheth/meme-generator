@@ -1,27 +1,44 @@
-
-.editor-container { 
-position: absolute;
-right: -2000px;
-display: grid;
-grid-template-columns: 1fr 1fr;
-grid-gap: 5%;
-transition: all .3s ;
+.editor-container {
+    position: absolute;
+    right: -2000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5%;
+    transition: all .3s;
 }
 
-.editor-container.shown { 
-position: relative;
-right: 0;
-display: grid;
-padding: 5%;
-grid-gap: 10%;
-grid-template-columns: 50% 40%;
+.editor-container.shown {
+    position: relative;
+    right: 0;
+    display: grid;
+    padding: 5%;
+    grid-gap: 10%;
+    grid-template-columns: 50% 40%;
 }
 
-.meme-editor{
+.meme-editor {
+    width: 100%;
+    font-family: 'Arial';
+}
+
+.meme-editor input {
     width: 100%;
 }
-.meme-editor input{ 
-    width: 100%;
+.under-input-container { 
+    display: flex;
+    justify-content: space-evenly;
+}
+.buttons-container {
+    margin-top: 5%;
+margin: 0 auto;}
+.editor-buttons { 
+    width: 90%;
+    margin: 2% 15% ;
+}
+.meme-editor .editor-buttons button { 
+    width: 25%;
+    height: 55px;
+    margin: 2% auto;
 }
 .card img {
     height: 100%;
@@ -34,19 +51,52 @@ grid-template-columns: 50% 40%;
     height: 200px;
 }
 
-.color-changer { 
+.color-changer {
     display: flex;
-justify-content: center;}
-.color-changer h5{ 
+    justify-content: space-evenly;
+    place-items: center;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.color-changer h5 {
     margin-bottom: 1%;
 }
-.color-changer .change { 
+
+.color-changer .change {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-.color-changer .change input { 
-    width: 50px;
-    height: 50px;
+
+.color-changer .change input {
+    width: 30px;
+    height: 30px;
     border: none;
+}
+
+.color-changer .fas {
+    font-size: 25px;
+    color: black;
+    margin-top: 100% ;
+    
+}
+
+.meme-editor button {
+    width: 15%;
+    height: 35px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+}
+
+.line-input {
+    height: 35px;
+    font-size: 1.5rem;
+    color: #8cb04e;
+    border-radius: 10px;
+    border: 2px solid #8cb04e;
+    margin-bottom: 3%;
+}
+.meme-editor select{
+width: 45%;
 }
