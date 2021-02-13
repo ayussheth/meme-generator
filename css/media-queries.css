@@ -52,7 +52,7 @@
     .main-layout {
         max-width: 900px;
     }
-    
+
 
 }
 
@@ -92,9 +92,10 @@
     #img-canvas {
         height: 100%;
     }
-.about-section p { 
-    font-size: 1rem;
-}
+
+    .about-section p {
+        font-size: 1rem;
+    }
 
 }
 
@@ -107,8 +108,13 @@
         padding-top: 6%;
     }
 
+    .header h3 {
+        margin-top: 15%;
+    }
+
     .main-layout {
         max-width: 100%;
+        margin-top: 1%;
     }
 
     .main-container.editor-shown {
@@ -165,8 +171,9 @@
         height: 50px;
         width: 50px;
     }
-    .about-section{
-flex-direction: column;
-padding: 5%;
+
+    .about-section {
+        flex-direction: column;
+        padding: 5%;
     }
 }

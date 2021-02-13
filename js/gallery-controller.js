@@ -38,12 +38,12 @@ function onGalleryToggle() {
     if (!savedGalleryActive){
         savedGalleryActive=true
         renderSavedGallery()
-        elToggleBtn.innerText=`Return to Meme Generator`
+        elToggleBtn.innerHTML=`Return to Meme Generator <i class="fas fa-undo">`
     }
     else { 
         savedGalleryActive=false 
+        elToggleBtn.innerHTML=`Saved Memes <i class="fas fa-undo">`
         renderGallery()
-        elToggleBtn.innerText=`Saved Memes`
 
     }
 }

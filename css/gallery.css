@@ -34,11 +34,12 @@ header {
     display: flex;
     float: right;
     justify-content: center;
-    margin-right: 10%
+    margin-right: 10%;
+    padding-top: 3%;
 }
 .menu h3{
-    margin:  5 5%;
-    width: 200px;
+margin: 0 auto;
+color:#7a9244
 }
 
 .header h1 {
