@@ -104,9 +104,9 @@ function onDownloadMeme(elLink) {
 }
 
 function onSaveMeme(){
-    const memeUrl = gElCanvas.toDataURL();
-    gGalleryMemes.push(memeUrl)
-    saveGalleryToStorage()
+    const memeUrl = (gElCanvas.toDataURL('image/jpeg', 0.1));
+    gGalleryMemes.push(memeUrl);
+    saveGalleryToStorage();
 }
 
 function editFromGallery(){

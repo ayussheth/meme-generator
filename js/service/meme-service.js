@@ -150,7 +150,6 @@ function renderCanvas() {
 
 function drawText(id) {
     let currLine = getCurrLine(id)
-    
     gCtx.globalCompositeOperation = 'source-over';
     gCtx.lineWidth = 2
     gCtx.strokeStyle = currLine.strokeColor
@@ -285,4 +284,12 @@ function saveGalleryToStorage() {
 
 function sameMemesToStorage() {
     saveToStorage('SavedMemes', gGalleryMemes)
+}
+
+function initSavedMemes() { 
+    for(var i = 0 ; i < 5 ; i++) { 
+        let img = `img/savedMemes/${i}.png`
+        gGalleryMemes.push(img)
+        sameMemesToStorage()
+    }
 }
