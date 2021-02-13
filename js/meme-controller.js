@@ -120,7 +120,6 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     gMeme.lines.forEach((line, idx) => {
         if (textHittest(pos.x, pos.y, idx)) {
-            console.log(`hit line: ${line.txt}`);
             gMeme.selectedLineIdx = idx;
             gMeme.lines[gMeme.selectedLineIdx].isDragging = true
             document.body.style.cursor = 'grab'
@@ -136,7 +135,6 @@ function onDown(ev) {
 function textHittest(x, y, textIndex) {
     let line = gMeme.lines[textIndex];
     line.width = gCtx.measureText(line.txt).width;
-    console.log(x,y);
     return (y > line.pos.y - line.size &&
         //no idea why but touch only works on my mobile if i apply this y-120.
         y-120 < line.pos.y + line.size &&
