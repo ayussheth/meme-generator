@@ -21,25 +21,31 @@
     font-family: 'Arial';
 }
 
-.meme-editor input {
+.meme-editor .line-input {
     width: 100%;
 }
-.under-input-container { 
+
+.under-input-container {
     display: flex;
     justify-content: space-evenly;
 }
+
 .buttons-container {
     margin-top: 5%;
-margin: 0 auto;}
-.editor-buttons { 
-    width: 90%;
-    margin: 2% 15% ;
+    margin: 0 auto;
 }
-.meme-editor .editor-buttons button { 
+
+.editor-buttons {
+    width: 90%;
+    margin: 2% 15%;
+}
+
+.meme-editor .editor-buttons button {
     width: 25%;
     height: 55px;
     margin: 2% auto;
 }
+
 .card img {
     height: 100%;
     object-fit: cover;
@@ -53,21 +59,20 @@ margin: 0 auto;}
 
 .color-changer {
     display: flex;
-    justify-content: space-evenly;
-    place-items: center;
-    width: 75%;
+    width: 65%;
     margin: 0 auto;
 }
 
-.color-changer h5 {
-    margin-bottom: 1%;
+.color-change label {
+    flex-direction: column;
+
 }
 
-.color-changer .change {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.color-changer .download-btn {
+    margin: 0 10px;
 }
+
+
 
 .color-changer .change input {
     width: 30px;
@@ -78,14 +83,10 @@ margin: 0 auto;}
 .color-changer .fas {
     font-size: 25px;
     color: black;
-    margin-top: 100% ;
-    
-}
-.color-changer .fas.fa-save {
+    cursor: pointer;
 
-    margin-top: 120% ;
-    
 }
+
 
 .meme-editor button {
     width: 15%;
@@ -103,6 +104,7 @@ margin: 0 auto;}
     border: 2px solid #8cb04e;
     margin-bottom: 3%;
 }
-.meme-editor select{
-width: 45%;
+
+.meme-editor select {
+    width: 45%;
 }
