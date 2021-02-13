@@ -118,6 +118,7 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     gMeme.lines.forEach((line, idx) => {
         if (textHittest(pos.x, pos.y, idx)) {
+            alert(`hit line:${line}`)
             gMeme.selectedLineIdx = idx;
             gMeme.lines[gMeme.selectedLineIdx].isDragging = true
             document.body.style.cursor = 'grab'
@@ -127,7 +128,7 @@ function onDown(ev) {
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
-    // if (!gTouchEvs.includes(ev.type)) elNewLine.select();
+    if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
 }
 
