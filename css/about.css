@@ -1,10 +1,9 @@
 .footer { 
-    overflow:hidden;
-    
+    overflow-x: auto    
 
 }
 footer { 
-    height: 350px;
+    padding: 2%;
     background-color: #e1dfb6;
 
 }

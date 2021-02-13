@@ -52,6 +52,7 @@
     .main-layout {
         max-width: 900px;
     }
+    
 
 }
 
@@ -91,7 +92,9 @@
     #img-canvas {
         height: 100%;
     }
-
+.about-section p { 
+    font-size: 1rem;
+}
 
 }
 
@@ -161,5 +164,9 @@
     .color-changer .change input {
         height: 50px;
         width: 50px;
+    }
+    .about-section{
+flex-direction: column;
+padding: 5%;
     }
 }

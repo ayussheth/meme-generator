@@ -287,8 +287,8 @@ function sameMemesToStorage() {
 }
 
 function initSavedMemes() { 
-    for(var i = 0 ; i < 5 ; i++) { 
-        let img = `img/savedMemes/${i}.png`
+    for(var i = 0 ; i < 4 ; i++) { 
+        let img = `img/savedMemes/${i}.jpg`
         gGalleryMemes.push(img)
         sameMemesToStorage()
     }

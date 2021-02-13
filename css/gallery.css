@@ -23,8 +23,7 @@ body {
 }
 
 header {
-    overflow: hidden;
-}
+    overflow-x: hidden}
 
 .header {
     height: 90px;

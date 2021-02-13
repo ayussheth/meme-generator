@@ -127,7 +127,7 @@ function onDown(ev) {
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
-    if (!gTouchEvs.includes(ev.type)) elNewLine.select();
+    // if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
 }
 
