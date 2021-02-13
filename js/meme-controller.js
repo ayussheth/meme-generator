@@ -27,7 +27,6 @@ function onChangeStrokeColor() {
 function onChangeSize(val) {
     let currLine = getSelectedLine()
     let currLineSize = currLine.size
-    clearMemeRects()
     renderCanvas()
     if (val === 'plus') currLine.size = currLineSize + 5
     else if (currLineSize === 10) return
@@ -52,7 +51,6 @@ function onEditLine() {
     renderCanvas()
 }
 
-// function onFacebookShare() {
 
 // }
 
@@ -105,6 +103,15 @@ function onDownloadMeme(elLink) {
 
 }
 
+function onSaveMeme(){
+    const memeUrl = gElCanvas.toDataURL();
+    gGalleryMemes.push(memeUrl)
+    saveGalleryToStorage()
+}
+
+function editFromGallery(){
+
+}
 //MOUSE AND TOUCH EVENTS 
 function onDown(ev) {
     ev.preventDefault();
@@ -132,8 +139,6 @@ function textHittest(x, y, textIndex) {
         x < line.pos.x + (line.width / 2) 
     )
 }
-
-
 
 function onMove(ev) {
     let activeLine = getSelectedLine()

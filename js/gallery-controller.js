@@ -10,6 +10,8 @@ function renderEditor(id) {
     elMainContainer.classList.add('editor-shown')
     elEditorContainer.classList.add('shown')
     elGalleryContainer.classList.add('shrunken')
+    let elClearButton = document.querySelector('.toggle-lines-icon')
+    elClearButton.innerHTML = '<i class="fas fa-eye-slash"></i>'
     gMeme.exportReady = false 
     resetMeme()
     clearCanvas()
