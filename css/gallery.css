@@ -3,12 +3,17 @@
 }
 
 body {
-    background: linear-gradient(rgba(225, 223, 182, 1) 0%, rgb(242, 248, 228) 14%, rgb(245, 246, 241) 64%, rgb(255, 255, 255) 100%);
+    background: linear-gradient(rgba(225, 223, 182, 1) 0%, rgb(242, 248, 228) 14%, #f5f6f1 64%, rgb(255, 255, 255) 100%);
     background-repeat: no-repeat;
     background-size: auto;
     margin: 0;
     font-family: 'Ubuntu';
 
+}
+
+::selection {
+    color: #f5f6f1;
+    background: #8cb04e;
 }
 
 /* color palette:
@@ -23,23 +28,26 @@ body {
 }
 
 header {
-    overflow-x: hidden}
+    overflow-x: hidden
+}
 
 .header {
     height: 90px;
     background-color: #e1dfb6;
     width: 100vw;
 }
-.header .menu { 
+
+.header .menu {
     display: flex;
     float: right;
     justify-content: center;
     margin-right: 10%;
     padding-top: 3%;
 }
-.menu h3{
-margin: 0 auto;
-color:#7a9244
+
+.menu h3 {
+    margin: 0 auto;
+    color: #7a9244
 }
 
 .header h1 {
@@ -88,34 +96,40 @@ color:#7a9244
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    
+
 }
-#img-canvas{
+
+#img-canvas {
     border-radius: 10px;
 }
 
-.exit{
+.exit {
     opacity: 0;
     transition: all .2s;
 }
-.x-btn{
+
+.x-btn {
     color: darkgray;
 }
+
 .x-btn:hover .exit {
     opacity: 100%;
     color: darkgray;
 }
 
-#saved-meme-container { 
+#saved-meme-container {
     display: block;
     margin: 0 auto;
 }
-#saved-meme-container img{ 
-width: 100%;
+
+#saved-meme-container img {
+    width: 100%;
 }
-.delete-meme-btn { 
+
+.delete-meme-btn {
     color: darkgray;
 }
-.delete-meme-btn:hover { 
+
+.delete-meme-btn:hover {
     color: black;
 }

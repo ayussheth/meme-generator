@@ -102,7 +102,7 @@ function onDownloadMeme(elLink) {
 
 function onSaveMeme(){
     const memeUrl = (gElCanvas.toDataURL());
-    let memeDate = new Date()
+    
     gGalleryMemes.push({
         img: memeUrl,
         date:   memeDate.toLocaleDateString()
@@ -126,9 +126,7 @@ function onDown(ev) {
             document.body.style.cursor = 'grab'
             renderCanvas()
         }
-
     });
-
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
@@ -138,10 +136,11 @@ function onDown(ev) {
 
 function textHittest(x, y, textIndex) {
     let line = gMeme.lines[textIndex];
+    line.width = gCtx.measureText(line.txt).width;
     return (y > line.pos.y - line.size &&
         y < gElCanvas.height - (gElCanvas.height - line.pos.y) &&
-        x > line.pos.x - (line.width / 2) &&
-        x < line.pos.x + (line.width / 2) 
+        x > line.pos.x - (line.width * 2) &&
+        x < line.pos.x + (line.width * 2) 
     )
 }
 

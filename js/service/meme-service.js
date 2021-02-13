@@ -91,7 +91,7 @@ var gImgs = [{
     },
 ];
 var gGalleryMemes = [];
-var gElCanvas;
+var gElCanvas = document.getElementById('img-canvas') 
 var gCtx;
 var gMeme = {
     selectedImgId: 1,
@@ -100,28 +100,28 @@ var gMeme = {
     lines: [{
             txt: 'This is my First line',
             pos: {
-                x: 125,
-                y: 25
+                x: (gElCanvas.width / 2),
+                y: 40
             },
             size: 25,
             align: 'center',
             color: 'red',
             strokeColor: 'black',
-            width: 312,
+            width: 194,
             isDragging: false,
             font: 'Impact',
         },
         {
             txt: 'This is my Second line',
             pos: {
-                x: 125,
-                y: 100
+                x: (gElCanvas.width / 2),
+                y: (gElCanvas.height -40)
             },
             size: 25,
             align: 'center',
             color: 'red',
             strokeColor: 'black',
-            width: 362,
+            width: 226,
             isDragging: false,
             font: 'Impact',
         }
@@ -129,7 +129,7 @@ var gMeme = {
 }
 
 function initCanvas() {
-    gElCanvas = document.getElementById('img-canvas')
+    
     gCtx = gElCanvas.getContext('2d')
     renderCanvas()
 }
@@ -211,8 +211,8 @@ function newMemeLine() {
     gMeme.lines.push({
         txt: 'This is my new line',
         pos: {
-            x: 185,
-            y: 185
+            x: gElCanvas.width / 2,
+            y: gElCanvas.height / 2
         },
         size: 25,
         align: 'center',
@@ -262,11 +262,11 @@ function resetMeme() {
         line.font = 'impact'
     });
     gMeme.lines[0].width = 312
-    gMeme.lines[0].pos.x = 185
-    gMeme.lines[0].pos.y = 25
+    gMeme.lines[0].pos.x = gElCanvas.width / 2
+    gMeme.lines[0].pos.y = 40
     gMeme.lines[1].width = 362
-    gMeme.lines[1].pos.x = 185
-    gMeme.lines[1].pos.y = 350
+    gMeme.lines[1].pos.x = gElCanvas.width / 2
+    gMeme.lines[1].pos.y = gElCanvas.height -40
     gMeme.selectedLineIdx = 0
 }
 

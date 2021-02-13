@@ -27,8 +27,8 @@ footer {
     font-size: 1.6rem;
     color:  #8cb04e
 }
-.about-container a{
+.about-container a,
+.about-container h2{
     color: 
     #5c452d;
-    font-size: 1rem;
 }

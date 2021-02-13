@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="css/gallery.css">
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/media-queries.css">
     <link rel="shortcut icon" type="image/jpg" href="css/favicon.jpg" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <title>Meme Generator</title>
 </head>
 
@@ -27,7 +26,6 @@
             </div>
         </div>
     </header>
-
     <div class="main-container main-layout">
         <div class="gallery-container">
             <div class="gallery-grid">
@@ -53,7 +51,6 @@
                         <button onclick="onChangeAlign('right')"><i class="fas fa-align-right"></i></button></button>
                 </div>
                 <div class="buttons-container">
-
                     <div class="editor-buttons">
                         <button onclick="onChangeSize('plus')"><i class="fas fa-search-plus"></i></button>
                         <button onclick="onChangeSize('minus')"><i class="fas fa-search-minus"></i></button>
@@ -68,25 +65,23 @@
                     </div>
                 </div>
                 <div class="color-changer">
-                    <div class="change change-fill">
-                        <h5> Fill:</h5><input type="color" id="user-color-picker" oninput="onChangeColor()">
-                    </div>
-                    <div class="change change-stroke">
-                        <h5> Stroke:</h5><input type="color" id="user-stroke-color-picker"
-                            oninput="onChangeStrokeColor()">
-                    </div>
-                    <a href="#" class="download-btn" onclick="onDownloadMeme(this)"><i class="fas fa-download"></i> </a>
-                    <a href="#" class="download-btn" onclick="onSaveMeme()"><i class="fas fa-save"></i> </a>
+                        <label><i class="fas fa-fill-drip"></i>
+                        <input type="color" id="user-color-picker" oninput="onChangeColor()" style="visibility:hidden
+                            "></label>
+                        <label><i class="fas fa-paint-brush"></i>
+                            <input type="color" id="user-stroke-color-picker" oninput="onChangeStrokeColor()" style="visibility:hidden
+                            "></label>
+                    <label><a href="#" class="download-btn" onclick="onDownloadMeme(this)"><i class="fas fa-download"></i> </a></label>
+                    <label><a href="#" class="download-btn" onclick="onSaveMeme()"><i class="fas fa-save"></i> </a></label>
+                </div>
+                <span class="x-btn" onclick="onCloseEditor()">X <span class="exit">Click me to close</span></span>
             </div>
-            <span class="x-btn" onclick="onCloseEditor()">X <span class="exit">Click me to close</span></span>
-            </div>
+        </div>
 
-        </div>
-        
-    <div class="editor-container " id="saved-meme-container">
-        <div class="meme-container ">
-            
-        </div>
+        <div class="editor-container " id="saved-meme-container">
+            <div class="meme-container ">
+
+            </div>
         </div>
     </div>
     <div class="footer ">
@@ -96,19 +91,18 @@
                     <img src="img/gali.jpg" alt="" srcset="">
                 </div>
                 <div class="about-container">
+                    <h2>Gali Nickel</h2>
                     <p>I guess you could say I'm somewhat of a Shrek enthusiast.</p>
                     <a href="https://galinickel.github.io/ca-gallery-gali">Visit my portfolio</a>
                 </div>
             </div>
         </footer>
     </div>
-
     <script src="js/service/storage-service.js"></script>
     <script src="js/service/meme-service.js"></script>
     <script src="js/service/gallery-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
-
 </body>
 
 </html>
