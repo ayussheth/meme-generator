@@ -100,49 +100,48 @@ function onDownloadMeme(elLink) {
 
 }
 
-function onSaveMeme() {
+function onSaveMeme(){
     const memeUrl = (gElCanvas.toDataURL());
-
+    
     gGalleryMemes.push({
         img: memeUrl,
-        date: memeDate.toLocaleDateString()
+        date:   memeDate.toLocaleDateString()
 
     });
     saveGalleryToStorage();
 }
 
-function editFromGallery() {
+function editFromGallery(){
 
 }
 //MOUSE AND TOUCH EVENTS 
 function onDown(ev) {
     ev.preventDefault();
-    let pos = getEvPos(ev)
-    console.log(gMeme.selectedLineIdx);
+    const pos = getEvPos(ev)
     gMeme.lines.forEach((line, idx) => {
         if (textHittest(pos.x, pos.y, idx)) {
-            gMeme.selectedLineIdx = idx;
-            pos.y = pos.y
-            console.log(gMeme.selectedLineIdx);
             console.log(`hit line: ${line.txt}`);
-            changeActiveLine(idx)
+            gMeme.selectedLineIdx = idx;
+            gMeme.lines[gMeme.selectedLineIdx].isDragging = true
+            document.body.style.cursor = 'grab'
         }
     });
-    document.body.style.cursor = 'grab'
+    let elNewLine = document.querySelector('.line-input')
+    elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
+    elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
     if (!gTouchEvs.includes(ev.type)) elNewLine.select();
     renderCanvas()
 }
 
-
 function textHittest(x, y, textIndex) {
     let line = gMeme.lines[textIndex];
     line.width = gCtx.measureText(line.txt).width;
-    console.log(x, y);
-    return (y  > line.pos.y - line.size &&
-        //i havent got a clue WHY, but drag only works on touch when y-120 is declared. please help me figure out why
-        y - 120 < line.pos.y + line.size &&
+    console.log(x,y);
+    return (y > line.pos.y - line.size &&
+        //no idea why but touch only works on my mobile if i apply this y-120.
+        y-120 < line.pos.y + line.size &&
         x > line.pos.x - (line.width * 2) &&
-        x < line.pos.x + (line.width * 2)
+        x < line.pos.x + (line.width * 2) 
     )
 }
 
@@ -182,11 +181,4 @@ function getEvPos(ev) {
         }
     }
     return pos
-}
-
-function changeActiveLine(){ 
-    let activeLine = getSelectedLine()
-    activeLine.isDragging = true
-    let elNewLine = document.querySelector('.line-input')
-    elNewLine.value = activeLine.txt
 }
