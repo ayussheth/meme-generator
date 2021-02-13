@@ -105,3 +105,18 @@ color:#7a9244
     opacity: 100%;
     color: darkgray;
 }
+
+#saved-meme-container { 
+    display: block;
+    margin: 0 auto;
+}
+#saved-meme-container img{ 
+width: 100%;
+}
+
+.delete-meme-btn { 
+    color: darkgray;
+}
+.delete-meme-btn:hover { 
+    color: black;
+}

@@ -28,7 +28,7 @@ onCloseEditor()
     let elGallery = document.querySelector('.gallery-grid')
     let strHTML = ``
     gGalleryMemes.forEach((img, idx) => {
-        strHTML += `<div class="card"><img class="img-card" onclick="onSavedMemePick(${idx})" src="${img}"></div>`
+        strHTML += `<div class="card"><img class="img-card" onclick="onSavedMemePick(${idx})" src="${img.img}"></div>`
     });
     elGallery.innerHTML = strHTML
 }

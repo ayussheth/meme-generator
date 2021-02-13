@@ -51,9 +51,6 @@ function onEditLine() {
     renderCanvas()
 }
 
-
-// }
-
 function onChangeAlign(val) {
     let currLine = getSelectedLine()
     currLine.align = val
@@ -104,8 +101,13 @@ function onDownloadMeme(elLink) {
 }
 
 function onSaveMeme(){
-    const memeUrl = (gElCanvas.toDataURL('image/jpeg', 0.1));
-    gGalleryMemes.push(memeUrl);
+    const memeUrl = (gElCanvas.toDataURL());
+    let memeDate = new Date()
+    gGalleryMemes.push({
+        img: memeUrl,
+        date:   memeDate.toLocaleDateString()
+
+    });
     saveGalleryToStorage();
 }
 

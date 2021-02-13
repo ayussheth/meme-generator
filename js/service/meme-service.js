@@ -182,7 +182,7 @@ function markActiveLine() {
             y = currLine.pos.y + (currLine.size / 2)
             break;
     }
-    drawLine(x, y, (x+currLine.width))
+    drawLine(x, y, (x + currLine.width))
 }
 
 function drawLine(xStart, yStart, xEnd) {
@@ -191,7 +191,7 @@ function drawLine(xStart, yStart, xEnd) {
 
     gCtx.beginPath();
     gCtx.moveTo(xStart, yStart);
-    gCtx.lineTo( xEnd, yStart);
+    gCtx.lineTo(xEnd, yStart);
     gCtx.stroke();
     gCtx.setLineDash([]);
 
@@ -286,10 +286,14 @@ function sameMemesToStorage() {
     saveToStorage('SavedMemes', gGalleryMemes)
 }
 
-function initSavedMemes() { 
-    for(var i = 0 ; i < 4 ; i++) { 
-        let img = `img/savedMemes/${i}.jpg`
-        gGalleryMemes.push(img)
+function initSavedMemes() {
+    let memeDate = new Date()
+    for (var i = 0; i < 4; i++) {
+        let meme = {
+            img: `img/savedMemes/${i}.jpg`,
+            date: memeDate.toLocaleDateString()
+        }
+        gGalleryMemes.push(meme)
         sameMemesToStorage()
     }
 }
