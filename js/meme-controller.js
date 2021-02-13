@@ -118,6 +118,8 @@ function onSaveMeme(){
 function onDown(ev) {
     ev.preventDefault();
     const pos = getEvPos(ev)
+    gMeme.exportReady = false
+
     gMeme.lines.forEach((line, idx) => {
         if (textHittest(pos.x, pos.y, idx)) {
             gMeme.selectedLineIdx = idx;
