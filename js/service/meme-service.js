@@ -1,93 +1,75 @@
 'use strict'
 var gImgs = [{
         id: 0,
-        url: 'img/0.jpg',
-        keywords: ['shrek', 'confused', 'sarcastic']
+        url: 'img/0.jpg'
     },
     {
         id: 1,
-        url: 'img/1.jpg',
-        keywords: ['shrek', 'sarcastic']
+        url: 'img/1.jpg'
     },
     {
         id: 2,
-        url: 'img/2.jpg',
-        keywords: ['shrek', 'monsters inc', 'awkward']
+        url: 'img/2.jpg'
     },
     {
         id: 3,
-        url: 'img/3.jpg',
-        keywords: ['shrek', 'trump', 'angry', 'funny']
+        url: 'img/3.jpg'
     },
     {
         id: 4,
-        url: 'img/4.jpg',
-        keywords: ['shrek', 'sarcastic']
+        url: 'img/4.jpg'
     },
     {
         id: 5,
-        url: 'img/5.jpg',
-        keywords: ['shrek', 'jacuzzi', 'funny']
+        url: 'img/5.jpg'
     },
     {
         id: 6,
-        url: 'img/6.jpg',
-        keywords: ['shrek']
+        url: 'img/6.jpg'
     },
     {
         id: 7,
-        url: 'img/7.jpg',
-        keywords: ['shrek', 'funny', 'awkward']
+        url: 'img/7.jpg'
     },
     {
         id: 8,
-        url: 'img/8.jpg',
-        keywords: ['shrek', 'angry']
+        url: 'img/8.jpg'
     },
     {
         id: 9,
-        url: 'img/9.jpg',
-        keywords: ['shrek', 'real-life', 'funny', 'awkward']
+        url: 'img/9.jpg'
     },
     {
         id: 10,
-        url: 'img/10.jpg',
-        keywords: ['shrek', 'donkey', 'awkward']
+        url: 'img/10.jpg'
     },
     {
         id: 11,
-        url: 'img/11.jpg',
-        keywords: ['shrek', 'shrexy', 'smile', 'awkward']
+        url: 'img/11.jpg'
     },
     {
         id: 12,
-        url: 'img/12.jpg',
-        keywords: ['shrek', 'donkey', 'awkward', 'smile']
+        url: 'img/12.jpg'
     },
     {
         id: 13,
-        url: 'img/13.jpg',
-        keywords: ['shrek']
+        url: 'img/13.jpg'
     },
     {
         id: 14,
-        url: 'img/14.jpg',
-        keywords: ['shrek']
+        url: 'img/14.jpg'
     },
     {
         id: 15,
-        url: 'img/15.jpg',
-        keywords: ['shrek']
+        url: 'img/15.jpg'
     },
     {
         id: 16,
-        url: 'img/16.jpg',
-        keywords: ['shrek']
+        url: 'img/16.jpg'
     },
     {
         id: 17,
-        url: 'img/17.jpg',
-        keywords: ['shrek']
+        url: 'img/17.jpg'
     },
 ];
 var gGalleryMemes = [];
@@ -127,7 +109,6 @@ var gMeme = {
 }
 
 function initCanvas() {
-    
     gCtx = gElCanvas.getContext('2d')
     renderCanvas()
 }
@@ -161,7 +142,6 @@ function drawText(id) {
 
 function markActiveLine() {
     let currLine = getSelectedLine()
-
     currLine.width = parseInt(gCtx.measureText(`${currLine.txt}`).width)
     gCtx.font = `${currLine.size}px ${currLine.font}`
     let x, y
@@ -185,13 +165,11 @@ function markActiveLine() {
 function drawLine(xStart, yStart, xEnd) {
     gCtx.setLineDash([5, 3]);
     gCtx.strokeStyle = 'white'
-
     gCtx.beginPath();
     gCtx.moveTo(xStart, yStart);
     gCtx.lineTo(xEnd, yStart);
     gCtx.stroke();
     gCtx.setLineDash([]);
-
 }
 
 
@@ -224,13 +202,15 @@ function newMemeLine() {
 
 }
 
-function removeSelectedLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-}
-
 function changeFont(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font
 
+}
+
+
+//CLEAR, RESET, REMOVE//
+function removeSelectedLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
 function clearCanvas() {
@@ -246,8 +226,6 @@ function clearMeme() {
         line.txt = ``
     });
 }
-
-
 
 function resetMeme() {
     gMeme.lines.forEach(line => {
@@ -265,6 +243,8 @@ function resetMeme() {
     gMeme.selectedLineIdx = 0
 }
 
+
+//HELPER FUNCTIONS//
 function getCurrLine(id) {
     return gMeme.lines[id]
 }
@@ -273,6 +253,7 @@ function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+//LOCAL STORAGE FUNCTIONS//
 function saveGalleryToStorage() {
     sameMemesToStorage()
 }
@@ -283,7 +264,7 @@ function sameMemesToStorage() {
 
 function initSavedMemes() {
     let memeDate = new Date()
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 9; i++) {
         let meme = {
             img: `img/savedMemes/${i}.jpg`,
             date: memeDate.toLocaleDateString()

@@ -1,8 +1,8 @@
 'use strict'
 var startX;
 var startY;
-//CHANGES TO THE APPEAREANCE OF THE LINE
 
+//CHANGES TO THE APPEAREANCE OF THE LINE
 function onChangeColor() {
     let activeLine = getSelectedLine()
     let pickedColor = document.querySelector('#user-color-picker').value
@@ -28,9 +28,9 @@ function onChangeSize(val) {
     let currLine = getSelectedLine()
     let currLineSize = currLine.size
     renderCanvas()
-    if (val === 'plus') currLine.size = currLineSize + 5
-    else if (currLineSize === 10) return
-    else currLine.size = currLineSize - 5
+    if (val === 'plus') currLine.size = currLineSize + 2
+    else if (currLineSize <= 20) return
+    else currLine.size = currLineSize - 2
     renderCanvas()
 }
 
@@ -40,7 +40,6 @@ function onMoveLine(val) {
     if (val === 'down') activeLine.pos.y = currLinePos + 5
     else activeLine.pos.y = currLinePos - 5
     renderCanvas()
-
 }
 
 function onEditLine() {
@@ -57,6 +56,8 @@ function onChangeAlign(val) {
     renderCanvas()
 }
 ///////////////////////////////////
+
+//ADDING, REMOVING, CLEARING
 function onSwitchLines() {
     let activeLine = getSelectedLine()
         ++gMeme.selectedLineIdx
@@ -92,7 +93,9 @@ function onClearLines() {
     gMeme.exportReady = !gMeme.exportReady
     renderCanvas()
 }
+///////////////////////////////////
 
+//SAVE AND DOWNLOAD
 function onDownloadMeme(elLink) {
     const data = gElCanvas.toDataURL();
     elLink.href = data;
@@ -102,18 +105,15 @@ function onDownloadMeme(elLink) {
 
 function onSaveMeme(){
     const memeUrl = (gElCanvas.toDataURL());
-    
     gGalleryMemes.push({
         img: memeUrl,
         date:   memeDate.toLocaleDateString()
-
     });
     saveGalleryToStorage();
 }
 
-function editFromGallery(){
+///////////////////////////////////
 
-}
 //MOUSE AND TOUCH EVENTS 
 function onDown(ev) {
     ev.preventDefault();
@@ -128,7 +128,7 @@ function onDown(ev) {
     let elNewLine = document.querySelector('.line-input')
     elNewLine.placeholder = gMeme.lines[gMeme.selectedLineIdx].txt
     elNewLine.value = gMeme.lines[gMeme.selectedLineIdx].txt
-    if (!gTouchEvs.includes(ev.type)) elNewLine.select();
+    elNewLine.select();
     renderCanvas()
 }
 

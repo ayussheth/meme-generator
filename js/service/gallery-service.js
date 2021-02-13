@@ -10,7 +10,6 @@ function init() {
     renderGallery();
     let savedGalleryMemes = loadFromStorage('SavedMemes')
     if (!savedGalleryMemes) initSavedMemes();
-
 }
 
 function renderGallery() {
@@ -23,7 +22,7 @@ function renderGallery() {
 }
 
 function renderSavedGallery() {
-onCloseEditor() 
+    onCloseEditor()
     gGalleryMemes = loadFromStorage('SavedMemes')
     let elGallery = document.querySelector('.gallery-grid')
     let strHTML = ``

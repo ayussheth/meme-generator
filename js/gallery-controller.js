@@ -1,7 +1,4 @@
-function onImgPick(id) {
-    gMeme.selectedImgId = id
-    renderEditor(id)
-}
+'use strict'
 
 function renderEditor(id) {
 
@@ -17,7 +14,6 @@ function renderEditor(id) {
     resetMeme()
     clearCanvas()
     initCanvas()
-
 }
 
 function onCloseEditor() {
@@ -30,7 +26,12 @@ function onCloseEditor() {
     let elSavedMeme = document.getElementById('saved-meme-container')
     elSavedMeme.classList.remove('shown')
 }
+function onImgPick(id) {
+    gMeme.selectedImgId = id
+    renderEditor(id)
+}
 
+//SAVED MEMES GALLERY//
 function onSavedGalleryClick() {
     renderSavedGallery()
 }

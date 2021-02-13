@@ -42,11 +42,10 @@ header {
     float: right;
     justify-content: center;
     margin-right: 10%;
-    padding-top: 3%;
 }
 
 .menu h3 {
-    margin: 0 auto;
+    margin-top:  2.5rem;
     color: #7a9244
 }
 
