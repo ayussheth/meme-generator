@@ -107,7 +107,6 @@ var gMeme = {
             align: 'center',
             color: 'red',
             strokeColor: 'black',
-            width: 194,
             isDragging: false,
             font: 'Impact',
         },
@@ -121,7 +120,6 @@ var gMeme = {
             align: 'center',
             color: 'red',
             strokeColor: 'black',
-            width: 226,
             isDragging: false,
             font: 'Impact',
         }
@@ -140,7 +138,6 @@ function renderCanvas() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         gMeme.lines.forEach((line, idx) => {
-            line.width = parseInt(gCtx.measureText(`${line.txt}`).width)
             drawText(idx)
             if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
         });
@@ -261,10 +258,8 @@ function resetMeme() {
         line.isDragging = false
         line.font = 'impact'
     });
-    gMeme.lines[0].width = 312
     gMeme.lines[0].pos.x = gElCanvas.width / 2
     gMeme.lines[0].pos.y = 40
-    gMeme.lines[1].width = 362
     gMeme.lines[1].pos.x = gElCanvas.width / 2
     gMeme.lines[1].pos.y = gElCanvas.height -40
     gMeme.selectedLineIdx = 0
