@@ -3,12 +3,6 @@
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 var savedGalleryActive = false;
 
-function init() {
-    initCanvas();
-    addMouseListeners();
-    addTouchListeners();
-    renderGallery();
-}
 
 function renderGallery() {
     let elGallery = document.querySelector('.gallery-grid')

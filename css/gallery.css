@@ -48,7 +48,8 @@ header {
 
 .menu h3 {
     margin-top:  2.5rem;
-    color: #7a9244
+    color: #7a9244;
+    cursor: pointer;
 }
 
 .header h1 {
@@ -97,6 +98,22 @@ header {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+}
+.gallery-grid img{
+cursor: pointer;
+}
+.card { 
+    transition: all .2s;
+}
+.card img { 
+    transition: all .2s;
+}
+.card img:hover { 
+    filter: brightness(1.5);
+}
+.card:hover { 
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
 
 }
 

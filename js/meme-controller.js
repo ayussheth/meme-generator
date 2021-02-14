@@ -2,6 +2,19 @@
 var startX;
 var startY;
 
+
+function renderCanvas() {
+    const img = new Image()
+    img.src = `./img/${gMeme.selectedImgId}.jpg`;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        gMeme.lines.forEach((line, idx) => {
+            drawText(idx)
+            if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
+        });
+    }
+}
+
 //CHANGES TO THE APPEAREANCE OF THE LINE
 function onChangeColor() {
     let pickedColor = document.querySelector('#user-color-picker').value
@@ -113,7 +126,6 @@ function onDown(ev) {
     ev.preventDefault();
     const pos = getEvPos(ev)
     gMeme.exportReady = false
-
     gMeme.lines.forEach((line, idx) => {
         if (textHittest(pos.x, pos.y, idx)) {
             gMeme.selectedLineIdx = idx;

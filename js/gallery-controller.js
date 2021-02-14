@@ -1,4 +1,10 @@
 'use strict'
+function init() {
+    initCanvas();
+    addMouseListeners();
+    addTouchListeners();
+    renderGallery();
+}
 
 function renderEditor(isSavedMeme) {
     let elMainContainer = document.querySelector('.main-container');

@@ -112,17 +112,6 @@ function initCanvas() {
     renderCanvas()
 }
 
-function renderCanvas() {
-    const img = new Image()
-    img.src = `./img/${gMeme.selectedImgId}.jpg`;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        gMeme.lines.forEach((line, idx) => {
-            drawText(idx)
-            if (gMeme.lines.length && !gMeme.exportReady) markActiveLine()
-        });
-    }
-}
 
 
 function drawText(id) {
