@@ -35,7 +35,8 @@ function onImgPick(id) {
 }
 
 function onSavedMemePick(idx) {
-    let memes = loadFromStorage('savedMemes')
+    let memes = loadFromStorage('SavedMemes')
+    console.log(memes);
     let activeMeme = memes[idx]
     gMeme.selectedImgId = activeMeme.imgId;
     gMeme.lines = []

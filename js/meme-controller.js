@@ -96,7 +96,7 @@ function onDownloadMeme(elLink) {
 
 function onSaveMeme() {
     const memeUrl = (gElCanvas.toDataURL());
-    let memes = loadFromStorage('savedMemes')
+    let memes = loadFromStorage('SavedMemes')
     if(!memes) memes = []
     memes.push({
         img: memeUrl,
