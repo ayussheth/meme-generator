@@ -98,7 +98,8 @@ function onSaveMeme() {
     const memeUrl = (gElCanvas.toDataURL());
     gGalleryMemes.push({
         img: memeUrl,
-        date: memeDate.toLocaleDateString()
+        imgId: gMeme.selectedImgId,
+        lines: [gMeme.lines]
     });
     saveGalleryToStorage();
 }
@@ -128,6 +129,7 @@ function onDown(ev) {
 function textHittest(x, y, textIndex) {
     let line = gMeme.lines[textIndex];
     line.width = gCtx.measureText(line.txt).width;
+    console.log(x,y)
     return (y > line.pos.y - line.size &&
         //no idea why but touch only works on my mobile if i apply this y-120.
         y - 120 < line.pos.y + line.size &&
@@ -164,6 +166,8 @@ function getEvPos(ev) {
         y: ev.offsetY
     }
     if (gTouchEvs.includes(ev.type)) {
+
+        console.log('ev:', ev)
         ev.preventDefault()
         ev = ev.changedTouches[0]
         pos = {

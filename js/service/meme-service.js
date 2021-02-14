@@ -72,7 +72,6 @@ var gImgs = [{
         url: 'img/17.jpg'
     },
 ];
-var gGalleryMemes = [];
 var gElCanvas = document.getElementById('img-canvas') 
 var gCtx;
 var gMeme = {
@@ -228,19 +227,39 @@ function clearMeme() {
 }
 
 function resetMeme() {
-    gMeme.lines.forEach(line => {
-        line.strokeColor = 'black'
-        line.color = 'white'
-        line.size = 25
-        line.align = 'center'
-        line.isDragging = false
-        line.font = 'impact'
-    });
-    gMeme.lines[0].pos.x = gElCanvas.width / 2
-    gMeme.lines[0].pos.y = 40
-    gMeme.lines[1].pos.x = gElCanvas.width / 2
-    gMeme.lines[1].pos.y = gElCanvas.height -40
-    gMeme.selectedLineIdx = 0
+    var currImg = gMeme.selectedImgId
+    gMeme =  {
+        selectedImgId: currImg,
+        selectedLineIdx: 0,
+        exportReady: false,
+        lines: [{
+                txt: 'This is my First line',
+                pos: {
+                    x: (gElCanvas.width / 2),
+                    y: 40
+                },
+                size: 25,
+                align: 'center',
+                color: 'red',
+                strokeColor: 'black',
+                isDragging: false,
+                font: 'Impact',
+            },
+            {
+                txt: 'This is my Second line',
+                pos: {
+                    x: (gElCanvas.width / 2),
+                    y: (gElCanvas.height -40)
+                },
+                size: 25,
+                align: 'center',
+                color: 'red',
+                strokeColor: 'black',
+                isDragging: false,
+                font: 'Impact',
+            }
+        ]
+    }
 }
 
 
@@ -263,13 +282,5 @@ function sameMemesToStorage() {
 }
 
 function initSavedMemes() {
-    let memeDate = new Date()
-    for (var i = 0; i < 9; i++) {
-        let meme = {
-            img: `img/savedMemes/${i}.jpg`,
-            date: memeDate.toLocaleDateString()
-        }
-        gGalleryMemes.push(meme)
-        sameMemesToStorage()
-    }
+    sameMemesToStorage()
 }
