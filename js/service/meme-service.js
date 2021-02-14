@@ -202,11 +202,11 @@ function newMemeLine() {
 
 }
 
-function changeFont(font) {
-    gMeme.lines[gMeme.selectedLineIdx].font = font
-
+function changeMemeProp(property, val) {
+    let activeLine = getSelectedLine()
+    activeLine[property] = val
+    renderCanvas()
 }
-
 
 //CLEAR, RESET, REMOVE//
 function removeSelectedLine() {

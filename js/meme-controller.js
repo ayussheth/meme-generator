@@ -4,34 +4,27 @@ var startY;
 
 //CHANGES TO THE APPEAREANCE OF THE LINE
 function onChangeColor() {
-    let activeLine = getSelectedLine()
     let pickedColor = document.querySelector('#user-color-picker').value
-    activeLine.color = pickedColor
-    renderCanvas()
+    changeMemeProp('color', pickedColor)
 }
 
 function onUpdateFont() {
     let selector = document.getElementById('selectFontFamily');
     let font = selector.options[selector.selectedIndex].value;
-    changeFont(font)
-    renderCanvas()
+    changeMemeProp('font', font)
 }
 
 function onChangeStrokeColor() {
-    let activeLine = getSelectedLine()
     let pickedColor = document.querySelector('#user-stroke-color-picker').value
-    activeLine.strokeColor = pickedColor
-    renderCanvas()
+    changeMemeProp('strokeColor', pickedColor)
 }
 
 function onChangeSize(val) {
     let currLine = getSelectedLine()
     let currLineSize = currLine.size
-    renderCanvas()
-    if (val === 'plus') currLine.size = currLineSize + 2
+    if (val === 'plus')     changeMemeProp('size', currLineSize+2)
     else if (currLineSize <= 20) return
-    else currLine.size = currLineSize - 2
-    renderCanvas()
+    else     changeMemeProp('size', currLineSize-2)
 }
 
 function onMoveLine(val) {
@@ -45,16 +38,14 @@ function onMoveLine(val) {
 function onEditLine() {
     let activeLine = getSelectedLine()
     let newLineInput = document.querySelector('.line-input').value
-    activeLine.txt = newLineInput
     activeLine.width = parseInt(gCtx.measureText(newLineInput).width)
-    renderCanvas()
+    changeMemeProp('txt', newLineInput)
 }
 
 function onChangeAlign(val) {
-    let currLine = getSelectedLine()
-    currLine.align = val
-    renderCanvas()
+    changeMemeProp('align', val)
 }
+
 ///////////////////////////////////
 
 //ADDING, REMOVING, CLEARING
@@ -103,11 +94,11 @@ function onDownloadMeme(elLink) {
 
 }
 
-function onSaveMeme(){
+function onSaveMeme() {
     const memeUrl = (gElCanvas.toDataURL());
     gGalleryMemes.push({
         img: memeUrl,
-        date:   memeDate.toLocaleDateString()
+        date: memeDate.toLocaleDateString()
     });
     saveGalleryToStorage();
 }
@@ -139,9 +130,9 @@ function textHittest(x, y, textIndex) {
     line.width = gCtx.measureText(line.txt).width;
     return (y > line.pos.y - line.size &&
         //no idea why but touch only works on my mobile if i apply this y-120.
-        y-120 < line.pos.y + line.size &&
+        y - 120 < line.pos.y + line.size &&
         x > line.pos.x - (line.width * 2) &&
-        x < line.pos.x + (line.width * 2) 
+        x < line.pos.x + (line.width * 2)
     )
 }
 
