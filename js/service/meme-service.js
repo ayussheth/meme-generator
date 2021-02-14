@@ -274,13 +274,9 @@ function getSelectedLine() {
 
 //LOCAL STORAGE FUNCTIONS//
 function saveGalleryToStorage() {
-    sameMemesToStorage()
+    saveMemesToStorage()
 }
 
-function sameMemesToStorage() {
-    saveToStorage('SavedMemes', gGalleryMemes)
-}
-
-function initSavedMemes() {
-    sameMemesToStorage()
+function saveMemesToStorage(val) {
+    saveToStorage('SavedMemes', val)
 }

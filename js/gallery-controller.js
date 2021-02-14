@@ -35,7 +35,8 @@ function onImgPick(id) {
 }
 
 function onSavedMemePick(idx) {
-    let activeMeme = gGalleryMemes[idx]
+    let memes = loadFromStorage('savedMemes')
+    let activeMeme = memes[idx]
     gMeme.selectedImgId = activeMeme.imgId;
     gMeme.lines = []
     gMeme.lines.push(...activeMeme.lines)
@@ -65,17 +66,7 @@ function onGalleryToggle() {
     }
 }
 
-// function onSavedMemePick(idx) {
-//     gGalleryMemes = loadFromStorage('SavedMemes')
-//     let meme = gGalleryMemes[idx]
-//     let elMainContainer = document.querySelector('.main-container');
-//     let elSavedMeme = document.getElementById('saved-meme-container')
-//     let elGalleryContainer = document.querySelector('.gallery-grid')
-//     elMainContainer.classList.add('editor-shown')
-//     elSavedMeme.classList.add('shown')
-//     elGalleryContainer.classList.add('shrunken')
-//     elSavedMeme.innerHTML = `<img src="${meme.img}"></img><h4>Date Created: ${meme.date}</h4><h4 class="delete-meme-btn" onclick="onDeleteSavedMeme(${idx})">Delete meme?</h4>`
-// }
+
 
 function toggleSavedMemeShown() {
     let elSavedMeme = document.getElementById('saved-meme-container')
@@ -84,8 +75,9 @@ function toggleSavedMemeShown() {
 }
 
 function onDeleteSavedMeme(idx) {
-    gGalleryMemes.splice(idx, 1)
-    sameMemesToStorage()
-    if (!gGalleryMemes.length) initSavedMemes()
+    let savedMemesGallery = loadFromStorage('SavedMemes')
+    console.log(savedMemesGallery);
+    savedMemesGallery.splice(idx, 1)
+    saveMemesToStorage(savedMemesGallery)
     renderSavedGallery()
 }

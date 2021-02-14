@@ -8,8 +8,6 @@ function init() {
     addMouseListeners();
     addTouchListeners();
     renderGallery();
-    let savedGalleryMemes = loadFromStorage('SavedMemes')
-    if (!savedGalleryMemes) initSavedMemes();
 }
 
 function renderGallery() {
@@ -22,13 +20,15 @@ function renderGallery() {
 }
 
 function renderSavedGallery() {
+    let savedMemesGallery = loadFromStorage('SavedMemes')
     onCloseEditor()
-    gGalleryMemes = loadFromStorage('SavedMemes')
     let elGallery = document.querySelector('.gallery-grid')
     let strHTML = ``
-    gGalleryMemes.forEach((img, idx) => {
-        strHTML += `<div class="card"><img class="img-card" onclick="onSavedMemePick(${idx})" src="${img.img}"></div>`
-    });
+    if (!savedMemesGallery || !savedMemesGallery.length) strHTML = `<p>Looks like you haven't saved any memes! Why not start now?</p>`
+    else {savedMemesGallery.forEach((img, idx) => {
+        strHTML += `<div class="card"><img class="img-card" onclick="onSavedMemePick(${idx})" src="${img.img}"><span class="saved-gallery-deletebtn" onclick="onDeleteSavedMeme(${idx})
+        ">X</span></div>`
+    });}
     elGallery.innerHTML = strHTML
 }
 

@@ -1,3 +1,4 @@
+
 .editor-container {
     position: absolute;
     right: -2000px;
@@ -31,21 +32,50 @@
 }
 
 .buttons-container {
-    margin-top: 5%;
-    margin: 0 auto;
+    padding: 5% 10% 5% 0;
+    background: linear-gradient(#7b924418,#7b92444d);
+    border-radius: 15px;
 }
-
 .editor-buttons {
     width: 90%;
     margin: 2% 15%;
 }
-
-.meme-editor .editor-buttons button {
-    width: 20%;
-    height: 45px;
-    margin: 2% auto;
+.meme-editor button {
+    height: 35px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin: 2%;
+    cursor: pointer;
+    transition: all .1s;
+}
+.meme-editor .fas,
+.meme-editor .far { 
+color: #161414
+}
+.meme-editor button:hover .fas,
+.meme-editor button:hover .far{ 
+    color: #8cb04e;
 }
 
+.meme-editor .editor-buttons button {
+    width: 25%;
+    
+}
+.bottom-btn-row { 
+display: flex;
+margin: 0 15%;
+width: 85%;
+}
+.bottom-btn-row button{ 
+width: 20%;
+}
+.meme-editor .fas { 
+    color: #161414;
+}
+.color-change-btn{
+    margin-top: 20%;
+}
 .card img {
     height: 100%;
     object-fit: cover;
@@ -80,21 +110,9 @@
     border: none;
 }
 
-.color-changer .fas {
-    font-size: 25px;
-    color: black;
-    cursor: pointer;
-
-}
 
 
-.meme-editor button {
-    width: 15%;
-    height: 35px;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    font-size: 1.2rem;
-}
+
 
 .line-input {
     height: 35px;

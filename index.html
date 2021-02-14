@@ -52,40 +52,48 @@
                 </div>
                 <div class="buttons-container">
                     <div class="editor-buttons">
-                        <button onclick="onChangeSize('plus')"><i class="fas fa-search-plus"></i></button>
-                        <button onclick="onChangeSize('minus')"><i class="fas fa-search-minus"></i></button>
-                        <button onclick="onSwitchLines()"><i class="fas fa-exchange-alt fa-rotate-90"></i></button>
-                        <button onclick="onMoveLine('up')"><i class="fas fa-angle-double-up"></i> </button>
-                        <button onclick="onMoveLine('down')"><i class="fas fa-angle-double-down"></i> </button>
-                        <button onclick="onNewLine()"><i class="fas fa-plus"></i> </button>
+                        <div class="editor-buttons-row">
+                            <button onclick="onChangeSize('plus')"><i class="fas fa-search-plus"></i></button>
+                            <button onclick="onChangeSize('minus')"><i class="fas fa-search-minus"></i></button>
+                            <button onclick="onSwitchLines()"><i class="fas fa-exchange-alt fa-rotate-90"></i></button>
+                        </div>
+                        <div class="editor-buttons-row">
+                            <button onclick="onMoveLine('up')"><i class="fas fa-angle-double-up"></i> </button>
+                            <button onclick="onMoveLine('down')"><i class="fas fa-angle-double-down"></i> </button>
+                            <button onclick="onNewLine()"><i class="fas fa-plus"></i> </button>
+                        </div>
+                        <div class="editor-buttons-row"></div>
                         <button onclick="onClearCanvas()"><i class="fas fa-ban"></i> </button>
                         <button onclick="onDeleteLine()"><i class="far fa-trash-alt"></i></button>
                         <button onclick="onClearLines()" class="toggle-lines-icon"><i
                                 class="fas fa-eye-slash"></i></button>
-                        <button> <label><i class="fas fa-fill-drip"></i>
-                                <input type="color" id="user-color-picker" oninput="onChangeColor()" style="visibility:hidden
-                                "></label></button>
-                        <button> <label><i class="fas fa-paint-brush"></i>
-                                <input type="color" id="user-stroke-color-picker" oninput="onChangeStrokeColor()" style="visibility:hidden
-                                    "></label></button>
-                          
                     </div>
+                        <div class="bottom-btn-row">
+                            <button> <label><i class="fas fa-fill-drip color-change-btn"></i>
+                                    <input type="color" id="user-color-picker" oninput="onChangeColor()"
+                                        style="visibility:hidden"></label>
+                            </button>
+                            <button> <label><i class="fas fa-paint-brush color-change-btn"></i>
+                                    <input type="color" id="user-stroke-color-picker" oninput="onChangeStrokeColor()"
+                                        style="visibility:hidden"></label>
+                            </button>
+                            <button><label><a href="#" class="download-btn" onclick="onDownloadMeme(this)"><i
+                                            class="fas fa-download"></i> </a></label></button>
+                            <button><label><a href="#" class="download-btn" onclick="onSaveMeme()"><i
+                                            class="fas fa-save"></i>
+                                    </a></label></button>
+                        </div>
                 </div>
-                <div class="color-changer">
-                    <label><a href="#" class="download-btn" onclick="onDownloadMeme(this)"><i
-                        class="fas fa-download"></i> </a></label>
-                    <label><a href="#" class="download-btn" onclick="onSaveMeme()"><i class="fas fa-save"></i>
-                    </a></label>
-                </div>
-                <span class="x-btn" onclick="onCloseEditor()">X <span class="exit">Click me to close</span></span>
             </div>
+            <span class="x-btn" onclick="onCloseEditor()">X <span class="exit">Click me to close</span></span>
         </div>
+    </div>
 
-        <div class="editor-container " id="saved-meme-container">
-            <div class="meme-container ">
+    <div class="editor-container " id="saved-meme-container">
+        <div class="meme-container ">
 
-            </div>
         </div>
+    </div>
     </div>
     <div class="footer ">
         <footer>
@@ -105,7 +113,6 @@
     <script src="js/service/meme-service.js"></script>
     <script src="js/service/gallery-service.js"></script>
     <script src="js/gallery-controller.js"></script>
-    <script src="js/service/saved-memes-gallery.js"></script>
     <script src="js/meme-controller.js"></script>
 </body>
 

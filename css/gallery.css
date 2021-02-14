@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
 }
-
+*:focus {
+    outline: 0 !important;
+}
 body {
     background: linear-gradient(rgba(225, 223, 182, 1) 0%, rgb(242, 248, 228) 14%, #f5f6f1 64%, rgb(255, 255, 255) 100%);
     background-repeat: no-repeat;

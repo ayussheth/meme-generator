@@ -96,13 +96,15 @@ function onDownloadMeme(elLink) {
 
 function onSaveMeme() {
     const memeUrl = (gElCanvas.toDataURL());
-    gGalleryMemes.push({
+    let memes = loadFromStorage('savedMemes')
+    if(!memes) memes = []
+    memes.push({
         img: memeUrl,
         imgId: gMeme.selectedImgId,
-        lines: [gMeme.lines]
+        lines: [...gMeme.lines]
     });
-    saveGalleryToStorage();
-}
+    saveMemesToStorage(memes);
+onGalleryToggle()}
 
 ///////////////////////////////////
 
